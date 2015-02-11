@@ -71,21 +71,21 @@ The software architecture on D02 is consistented of UEFI,GRUB,Kernel,Distributio
 
 And you could download the binary from the link:
 
-    https://github.com/HTSAT/build_linux_d02
+    https://github.com/hisilicon/d02_binary
 
 ### The function of each component
 
 <1>UEFI:responsible for loading and booting Image and dtb file,and you could download binary file from:
 
-    https://github.com/HTSAT/build_linux_d02/tree/master/UEFI
+	https://github.com/hisilicon/d02_binary/tree/master/UEFI
 
 <2>GRUB:responsible for loading and booting Image and dtb file in another way,and you could download binary file from:
 
-    https://github.com/HTSAT/build_linux_d02/tree/master/grub
+	https://github.com/hisilicon/d02_binary/tree/master/grub
 
 <3>Kernel:the operation system that D02 runs on,and you could get source code from follow website:
 
-    https://github.com/HTSAT/htsat.d02
+    https://github.com/hisilicon/estuary
 
 <4>Linux Distribution:current release distributions that D02 runs on, and you could dowload them from website:
 <5>Toolchain:used to compile and debug some above files, and now you could download it from follow website:
@@ -333,12 +333,58 @@ will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(Ope
 <1>Partition and format SATA disk
     Format SATA disk: mkfs -t ext4 /dev/sda
     Partition SATA disk as follow:
+    +---------+-----------+--------------+----------+
+    | Name    |   Size    |    Type      |   Tag    |
+    +---------+-----------+--------------+----------+
+    | sda1    |   200M    |  EFI system  |   EFI    |
+    +---------+-----------+--------------+----------+
+    | sda2    |   10G     |    ext4      |          |
+    +---------+-----------+--------------+----------+
+    | sda3    |   10G     |    ext4      |          |
+    +---------+-----------+--------------+----------+
+    | sda4    |   10G     |    ext4      |          |
+    +---------+-----------+--------------+----------+
+    | sda5    |rest space |    ext4      |   swap   |
+    +---------+-----------+--------------+----------+ 
 <2>Relative files are placed as follow:
+	sda1: -------EFI
+	      |       |
+          |       ------archaa.efi
+          |       |
+	      |       ------grub.cfg
+          |
+	      |-------------Image_3.16
+	      |
+	      |-------------hip05-d02_3.16
+	      |
+	      |-------------Image_3.19
+	      |
+	      |-------------hip05-d02_3.19
+	sda2: ubuntu distribution
+ 	sda3: OpenSUSE distribution
+	sda4: miniDistribution
+	sda5: left for user
 
 ***Note:The names of grub files archaa.efi and grub.cfg can not be modified.***
 
 <3>modify grub config file according to situation
 This part we will build 6 different grub config.They are as follow:
+	+-----------+-----------+----------------+------------------+
+	| boot name |  kernel   |  distribution  |  dtb file        |
+	+-----------+-----------+----------------+------------------+
+	| ubuntu316 |Image_3.16 |     ubuntu     |hip05-d02_3.16.dtb|
+	+-----------+-----------+----------------+------------------+
+	| ubuntu319 |Image_3.19 |     ubuntu     |hip05-d02_3.19.dtb|
+	+-----------+-----------+----------------+------------------+
+	|opensuse316|Image_3.16 |    opensuse    |hip05-d02_3.16.dtb|
+	+-----------+-----------+----------------+------------------+
+	|opensuse319|Image_3.19 |    opensuse    |hip05-d02_3.19.dtb|
+	+-----------+-----------+----------------+------------------+
+	| mini316   |Image_3.16 |    mini        |hip05-d02_3.16.dtb|
+	+-----------+-----------+----------------+------------------+
+	| mini319   |Image_3.19 |    mini        |hip05-d02_3.19.dtb|
+	+-----------+-----------+----------------+------------------+
+
 And the context of grub.cfg file is as follow:
 
 	#

@@ -4,8 +4,8 @@
 
 # Site
 title: Hisilicon
-subtitle:
-description:
+subtitle: Hisilicon Community Boards Support Site
+description: D01, D02, Hikey
 author: Joy Xu
 email: xuwei5@hisilicon.com
 language:
@@ -87,4 +87,9 @@ exclude_generator:
 deploy:
   type: github
   repository: https://github.com/hisilicon/hisilicon.github.io.git
-  branch: master     
+  branch: master
+
+# Plugins
+plugins:
+    - hexo-generator-feed
+    - hexo-generator-sitemap

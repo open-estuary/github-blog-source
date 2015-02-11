@@ -5,22 +5,12 @@ tags: D01
 
 #Hisilicon Opensource Board D01 hacking manual
 
-             .--,       .--,
-            ( (  \.---./  ) )
-             '.__/o   o\__.'
-                {=  ^  =}
-                 >  -  <
-         ____.""`-------`"".___
-        /                      \
-        \                      /
-        / Joy Xu               \
-        \ xuwei5@hisilicon.com /
-        /  V2.0                \
-        \  2014-12-18          /
-        /                      \
-        \______________________/
-              ___)( )(___
-             (((__) (__)))
+	/************************/
+	/* Joy Xu               */
+	/* xuwei5@hisilicon.com */
+	/* v2.0                 */
+	/* 2014-12-18           */
+	/************************/
 
 ##Overview
 
@@ -70,60 +60,60 @@ tags: D01
 <a name="hardware"/>
 ##D01 Board Hardware Featuers
 
-Major hardware features of D01 are listed here.  
-         
-        +-----------+----------------------------------------------------------+
-        |Features   | Description                                              |
-        +-----------+----------------------------------------------------------|
-        |Processors | Integrated 16 x ARM Cortex-A15 CPU Core @ max. 1.5GHz    |
-        |           | Support for up to 84000 DMIPS                            |
-        |           | Support for CPU configuration as AMP/SMP                 |
-        |           | Configurable Big or Littile endian,default Little endian |
-        |           | Support ARMv7-A instruction set                          |
-        |           | Support float VFPv4 instruction set                      |
-        +-----------+----------------------------------------------------------+
-        |Memory     | Two 64bit DDR3 DRAM Dual Inline                          |
-        |           | Memory Module(DIMM) sockets:(2)&(3)                      |
-        |           | Maximum frequency of 1600 MHz                            |
-        |           | Maximum capacity of 64GB                                 |
-        |           | preassembled capacity:16GB                               |
-        |           | Built-in two 1Gb NOR Flash;                              |
-        |           | only one NOR flash could use by software:(29)            |
-        |           | Built-in two 512MB NAND Flash:(30)                       |
-        +-----------+----------------------------------------------------------+
-        |GPU        | None                                                     |
-        +-----------+----------------------------------------------------------+
-        |Peripheral | TWO USB2.0 Host port:(11)                                |
-        |Interfaces | Two UART interfaces:(12)&(13)                            |
-        |           | Four I2C interfaces                                      |
-        |           | One SPI interface, supporting four CSs                   |
-        |           | One SD card interface:(10)                               |
-        |           | GPIO: eight LED interfaces:(26);eight switchs:(25)       |
-        |           | Three SATA interfaces(2.5in SATA 3.0 6Gbps):(4)&(5)&(6)  |
-        |           | Tracer Connector x2:(19)&(20)                            |
-        |           | One JTAG interfaces(5x2 pin, ARM Connector):(24)         |
-        +-----------+----------------------------------------------------------+
-        |BIOS       | BIOS resident in NOR Flash                               |
-        |           | Support for update with FTP                              |
-        +-----------+----------------------------------------------------------+
-        |LAN        | Two 10/100/1000Mbit/s Gigabit Ethernet ports:(15)&(16)   |
-        |           | One 10/100Mbit/s FE port:(14)                            |
-        +-----------+----------------------------------------------------------+
-        |Hardware   | Power consumption sense                                  |
-        |Monitor    |                                                          |
-        +-----------+----------------------------------------------------------+
-        |Input      | None                                                     |
-        |Devices    |                                                          |
-        +-----------+----------------------------------------------------------+
-        |Other      | One hardware button for power-off:(8)                    |
-        |           | One hardware button for reset:(9)                        |
-        +-----------+----------------------------------------------------------+
-
+Major hardware features of D01 are listed here.                               
+                                                                              
+	+----------+---------------------------------------------------------+
+	|Features  |Description                                              |
+	+----------+---------------------------------------------------------+
+	|Processors|Integrated 16 x ARM Cortex-A15 CPU Core @ max. 1.5GHz    |
+	|          |Support for up to 84000 DMIPS                            |
+	|          |Support for CPU configuration as AMP/SMP                 |
+	|          |Configurable Big or Littile endian,default Little endian |
+	|          |Support ARMv7-A instruction set                          |
+	|          |Support float VFPv4 instruction set                      |
+	+----------+---------------------------------------------------------+
+	|Memory    |Two 64bit DDR3 DRAM Dual Inline                          |
+	|          |Memory Module(DIMM) sockets:(2)&(3)                      |
+	|          |Maximum frequency of 1600 MHz                            |
+	|          |Maximum capacity of 64GB                                 |
+	|          |preassembled capacity:16GB                               |
+	|          |Built-in two 1Gb NOR Flash;                              |
+	|          |only one NOR flash could use by software:(29)            |
+	|          |Built-in two 512MB NAND Flash:(30)                       |
+	+----------+---------------------------------------------------------+
+	|GPU       |None                                                     |
+	+----------+---------------------------------------------------------+
+	|Peripheral|TWO USB2.0 Host port:(11)                                |
+	|Interfaces|Two UART interfaces:(12)&(13)                            |
+	|          |Four I2C interfaces                                      |
+	|          |One SPI interface, supporting four CSs                   |
+	|          |One SD card interface:(10)                               |
+	|          |GPIO: eight LED interfaces:(26);eight switchs:(25)       |
+	|          |Three SATA interfaces(2.5in SATA 3.0 6Gbps):(4)&(5)&(6)  |
+	|          |Tracer Connector x2:(19)&(20)                            |
+	|          |One JTAG interfaces(5x2 pin, ARM Connector):(24)         |
+	+----------+---------------------------------------------------------+
+	|BIOS      |BIOS resident in NOR Flash                               |
+	|          |Support for update with FTP                              |
+	+----------+---------------------------------------------------------+
+	|LAN       |Two 10/100/1000Mbit/s Gigabit Ethernet ports:(15)&(16)   |
+	|          |One 10/100Mbit/s FE port:(14)                            |
+	+----------+---------------------------------------------------------+
+	|Hardware  |Power consumption sense                                  |
+	|Monitor   |                                                         |
+	+----------+---------------------------------------------------------+
+	|Input     |None                                                     |
+	|Devices   |                                                         |
+	+----------+---------------------------------------------------------+
+	|Other     |One hardware button for power-off:(8)                    |
+	|          |One hardware button for reset:(9)                        |
+	+----------+---------------------------------------------------------+
+                                                                              
 <a name="pic"/>
 Refer to the following picture to know  
 where each component below is physically located.    
 
-<img src="./pic/d01-portrait.png" style="width:700px;height:500px;margin-left:30px"/> 
+<img src="http://7vilkn.com1.z0.glb.clouddn.com/d01-portrait.png" style="width:700px;height:500px;margin-left:30px"/> 
 
 <a name="solution"/> 
 ##D01 Software Solution and Status 
@@ -899,7 +889,7 @@ When booting D01, enter into UEFI Shell, then input these commands in turn:
 
 A quick view about GRUB booting is like following:
 
-<img src="./pic/d01-grub.png" style="width:700px;height:300px;margin-left:30px"/> 
+<img src="http://7vilkn.com1.z0.glb.clouddn.com/d01-grub.png" style="width:700px;height:300px;margin-left:30px"/> 
 
 <a name="kvm"/>
 ###KVM on D01
