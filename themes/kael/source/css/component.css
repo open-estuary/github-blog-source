@@ -1,4 +1,4 @@
-*,
+﻿*,
 *:after,
 *::before {
     -webkit-box-sizing: border-box;
@@ -672,7 +672,6 @@ span.ds-thread-count:after {
 /*Multiple DUOSHUO threads for PJAX END*/
 .windows-xp {
     line-height: 27px;
-    font-size: 16px;
     font-family: "Georgia", "SimSun", sans-serif;
 }
 
