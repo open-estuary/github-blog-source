@@ -1,0 +1,12 @@
+# # Content
+# excerpt_link: Read More
+
+# Miscellaneous
+rss: /atom.xml
+
+# enter your weibo ID
+weibo_show:  
+
+scroll_spy: true
+
+baidu_analytics: true
