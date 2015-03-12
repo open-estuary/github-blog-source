@@ -338,7 +338,7 @@ For simplicity, to build UEFI for D01 board, follow these steps:
 	Clone Linaro's uefi tools.
 
 	 	cd ~
- 		git clone git://git.linaro.org/arm/uefi/uefi-tools.git
+ 		git clone git://git.linaro.org/uefi/uefi-tools.git
  		export PATH=$PATH:~/uefi-tools.git
  		
 	Enter uefi-tools, add a build item for D01.
