@@ -2,56 +2,32 @@ title: D02-hacking-manual
 date: 2015-02-10 18:55:25
 tags: D02
 ---
-#Hisilicon Opensource Board D02 hacking manual
+##Hisilicon Opensource Board D02 hacking manual
 
 ##Overview
-* D02 Board Hardwawre Feature
-    * The Architecture of D02
-    * The function of each component
-       * UEFI
-       * GRUB
-       * Kernel
-       * Distributions
-       * Toolchain
-* D02 Hacking
-    * UEFI hacking
-    * Kernel hacking
-    * Boot via NAND
-    * Boot via SATA
-    * Boot via PXE
-    * Boot via GRUB
-    * Boot via ACPI
- 
-##D02 Board Hardware Features
+* [D02 Board Hardwawre Feature](#hardware)
+    * [The Architecture of D02](#architure)
+    * [The function of each component](#function)
+       * [UEFI](#UEFI)
+       * [GRUB](#GRUB)
+       * [Kernel](#kernel)
+       * [Distributions](#dist)
+       * [Toolchain](#toolchain)
+* [D02 Hacking](#hacking)
+    * [UEFI hacking](#UEFIh)
+    * [Kernel hacking](#kernelh)
+    * [Boot via NAND](#NAND)
+    * [Boot via PXE](#PXE)
+    * [Boot via SATA](#SATA)
+    * [Boot via ACPI](#ACPI)
+    * [Boot via NFS](#NFS)
+
+##<span id="hardware">D02 Board Hardware Features</span>
 Major hardware features of D02 are listed as follow:
-
-	+----------------------+------------------------------------------+    
-	|Features              |Description                               |    
-	+----------------------+------------------------------------------+    
-	|Board                 |SSI-EEB/E-ATX Compatible                  |    
-	+----------------------+------------------------------------------+    
-	|Processors            |16xARM Cortex-A57@max 2.1GHz              |    
-	|                      |Support ARMv8-A instruction set           |    
-	+----------------------+------------------------------------------+    
-	|Memory                |2x Memory channel 4x DDR3 DIMM            |    
-	|                      |2x SPI Flash 158Mb BIOS/UEFI              |    
-	|                      |1Gb NorFlash                              |    
-	+----------------------+------------------------------------------+    
-	|Peripheral interfaces |1x USB2.0 host port                       |    
-	|                      |1x UART interface                         |    
-	|                      |8x SAS3.0                                 |    
-	|                      |1X ARM Tracer connector                   |    
-	|                      |1x JTAG interface                         |    
-	+----------------------+------------------------------------------+    
-	|Expansion Capabilities|2 8x PCI express interfaces               |    
-	+----------------------+------------------------------------------+    
-	|LAN                   |2x10/100/1000Mbit/s Gigabit Ethernet ports|    
-	|                      |2x XGE SEP+                               |    
-	+----------------------+------------------------------------------+    
-	|Other                 |RTC battery                               |    
-	+----------------------+------------------------------------------+   
-
-### The Architecture of D02
+	![](/img/hardware.png)
+The structure picture of D02 is as follow:
+        ![](/img/d02_structure.jpg)
+### <span id="architure">The Architecture of D02</span>
 
 The software architecture on D02 is consistented of UEFI,GRUB,Kernel,Distribution and Toolchain.The architecture of D02 is as follow:
 
@@ -71,32 +47,64 @@ The software architecture on D02 is consistented of UEFI,GRUB,Kernel,Distributio
 
 And you could download the binary from the link:
 
-    https://github.com/hisilicon/d02_binary
+	https://github.com/hisilicon/d02_binary
 
-### The function of each component
+    +------------------+------------------------------------+       
+    |  filename        |    description                     |
+    +------------------+------------------------------------+    
+    |  D02.fd          |    UEFI binary                     |
+    +------------------+------------------------------------+   
+    |  bl1.bin         |    Trust Fireware binary           |
+    |  fip.bin         |                                    |
+    +------------------+------------------------------------+                    
+    |arch64aa.efi      |    grub binary                     |
+    +------------------+------------------------------------+       
+    |  grub.cfg        |    grub configure                  |        
+    +------------------+------------------------------------+       
+    |  Image           |    kernel image of 3.19            |
+    +------------------+------------------------------------+
+    |hip05-d02.dtb     |    dtb file for kernel 3.19        |
+    +------------------+------------------------------------+              
+    |filesystem.cpio.gz|    initramfs stored in NAND        |   
+    +------------------+------------------------------------+  
 
-<1>UEFI:responsible for loading and booting Image and dtb file,and you could download binary file from:
+###<span id="function"> The function of each component</span>
 
-	https://github.com/hisilicon/d02_binary/tree/master/UEFI
+<1><span id="UEFI">UEFI</span>:responsible for loading and booting Image and dtb file,and you could download binary file from:
 
-<2>GRUB:responsible for loading and booting Image and dtb file in another way,and you could download binary file from:
+    https://github.com/hisilicon/d02_binary/tree/master/UEFI
 
-	https://github.com/hisilicon/d02_binary/tree/master/grub
+<2><span id="GRUB">GRUB</span>:responsible for loading and booting Image and dtb file in another way,and you could download binary file from:
 
-<3>Kernel:the operation system that D02 runs on,and you could get source code from follow website:
+    https://github.com/hisilicon/d02_binary/tree/master/grub
+
+<3><span id="kernel">Kernel</span>:the operation system that D02 runs on,and you could get source code from follow website:
 
     https://github.com/hisilicon/estuary
 
-<4>Linux Distribution:current release distributions that D02 runs on, and you could dowload them from website:
-<5>Toolchain:used to compile and debug some above files, and now you could download it from follow website:
+<4><span id="dist">Linux Distribution</span>:current release distributions that D02 runs on, and you could dowload them from website:
+
+    +-----------+---------------------------------------------------------+
+    | ubuntu    | http://cloud-images.ubuntu.com/releases/14.04/release/  |
+    |           | ubuntu-14.04-server-cloudimg-arm64-root.tar.gz          |
+    +-----------+---------------------------------------------------------+
+    | openSUSE  | http://download.opensuse.org/ports/aarch64/             |
+    |           |       distribution/13.1/appliances/                     |
+    +-----------+---------------------------------------------------------+
+    | Fedora    |                                                         |
+    +-----------+---------------------------------------------------------+
+    | Debian    |                                                         |
+    +-----------+---------------------------------------------------------+
+
+<5><span id="toolchain">Toolchain</span>:used to compile and debug some above files, and now you could download it from follow website:
 
     http://releases.linaro.org/14.09/components/toolchain/binaries/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.bz2
 
 ***Note:you should export the path of toolchain after you download and decompression it.***
 
-##D02 hacking
+##<span id="hacking">D02 hacking</span>
 
-###UEFI hacking
+###<span id="UEFIh">UEFI hacking</span>
 
 FTP protocol is used for downloading between D02 and local network.So before this step, please make sure you have a working FTP server in local network. D02 could get files from network using FTP.
 <1>Prepare files about UEFI on local computer
@@ -176,7 +184,7 @@ Then D02 must be reset or powered off after this step.
 
 ***Note:The first time you boot D02,you have to update UEFI files,and this step is not necessary next time.***
 
-### Kernel Hacking
+###<span id="kernelh"> Kernel Hacking</span>
 
 <1>Download kernel source code from above section
 <2>Setting envirnment from compiling D02 as above
@@ -184,13 +192,13 @@ Then D02 must be reset or powered off after this step.
 ```
    export ARCH=arm64
    export CROSS_COMPILE=aarch64-linux-gnu-
-   make hulk_defconfig
+   make defconfig
    make -j16
    make ./hisilicon/hip05-d02.dtb
 ```
 Then there are two files that have been created:Image in the directory **arch/arm64/boot/**, and hip05-d02.dtb in the directory **arch/arm64/boot/dts/hisilicon**
 
-### Boot via NAND
+### <span id="NAND">Boot via NAND</span>
 
 Boot D02 to UEFI SHELL, and type the follow commands in EBL:
 <1>IP address config
@@ -218,30 +226,7 @@ Boot D02 to UEFI SHELL, and type the follow commands in EBL:
 
 show & change kernel command line in UEFI
 
-### Boot ubuntu on SATA disk
-<1>Download ubuntu release for D02 as above section
-<2>Boot D02 via NAND as above section
-<3>Partition and format SATA disk
-    Create one ext4 partition of at least 10G to host the root filesystem.In my case, it is /dev/sda1
-<4>Mount /dev/sda1 to D02's directory /dev/sda1
-
-    mkdir /mnt/sda1
-    mount -t ext4 /dev/sda1 /mnt/sda1
-
-<5>Exact ubuntu server release to /mnt/sda1
-    You could exact this distribution to the directory with FTP
-
-    scp [user.name]@[ip.address]:/U/B/U/N/T/U/P/A/T/H /mnt/sda1
-
-<6>Unmount /dev/sda1
-<7>Reboot and enter UEFI EBL SHELL according to UEFI hacking part
-<8>Change kernel command line.
-
-    console=ttyS0,115200 root=/dev/sda1 rootfstype=ext4 rw earlyprintk
-
-***Note:you should change /dev/sda1 according to your SATA disk situation***
-
-### Boot via PXE
+###<span id="PXE"> Boot via PXE</span>
 
 PXE boot depends on DHCP and TFTP services.So before verifing PXE, you need to setup a working DHCP server and TFTP server on your local network. In this case, my case is on ubuntu.
 <1>Setup DHCP server on ubuntu
@@ -327,12 +312,13 @@ The content of grub file as follow:
 
 ***Note: minilinux is the name of default PXE that will boot automatically.Image_3.16 is the name of kernel that locates on root directory of TFTP.hip05-d02_3.16.dtb is the name of dtb file that locates on root directory of TFTP.hulk-hip05.cpio.gz is the name of filesystem that locates on root diretory of TFTP.And you can change the names and locations.***
 
-### Boot via GRUB
+###<span id="SATA"> Boot via SATA</span>
 This part will tell you how to boot D02 via GRUB on SATA disk.In my case, SATA disk
 will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(OpenSUSE release),sda4(miniDistribution),sda5(for user).
 <1>Partition and format SATA disk
     Format SATA disk: mkfs -t ext4 /dev/sda
     Partition SATA disk as follow:
+
     +---------+-----------+--------------+----------+
     | Name    |   Size    |    Type      |   Tag    |
     +---------+-----------+--------------+----------+
@@ -346,29 +332,32 @@ will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(Ope
     +---------+-----------+--------------+----------+
     | sda5    |rest space |    ext4      |   swap   |
     +---------+-----------+--------------+----------+ 
+
 <2>Relative files are placed as follow:
-	sda1: -------EFI
-	      |       |
-          |       ------archaa.efi
-          |       |
-	      |       ------grub.cfg
-          |
-	      |-------------Image_3.16
-	      |
-	      |-------------hip05-d02_3.16
-	      |
-	      |-------------Image_3.19
-	      |
-	      |-------------hip05-d02_3.19
-	sda2: ubuntu distribution
- 	sda3: OpenSUSE distribution
-	sda4: miniDistribution
-	sda5: left for user
+
+        sda1: -------EFI
+              |       |
+              |       ------archaa.efi
+              |       |
+              |       ------grub.cfg
+              |
+              |-------------Image_3.1
+              |
+              |-------------hip05-d02_3.16
+              |
+              |-------------Image_3.19
+              |
+              |-------------hip05-d02_3.19
+        sda2: ubuntu distribution
+        sda3: OpenSUSE distribution
+        sda4: miniDistribution
+        sda5: left for user
 
 ***Note:The names of grub files archaa.efi and grub.cfg can not be modified.***
 
 <3>modify grub config file according to situation
 This part we will build 6 different grub config.They are as follow:
+
 	+-----------+-----------+----------------+------------------+
 	| boot name |  kernel   |  distribution  |  dtb file        |
 	+-----------+-----------+----------------+------------------+
@@ -433,7 +422,7 @@ And the context of grub.cfg file is as follow:
 <6>Type arrow key up and down to select grub boot menu to decise which kernel and 
 distribution to boot
 
-### Boot via ACPI
+###<span id="ACPI"> Boot via ACPI</span>
 D02 also supports booting via ACPI,and the steps are as follows:
 <1>Power on and enter UEFI SHELL
 <2>IP address config
@@ -468,3 +457,33 @@ D02 also supports booting via ACPI,and the steps are as follows:
 
     start Image "acpi=fore console=ttyS0,115200 earlycon=uart8250,mmio32,0x80300000 initrd=hulk-hip05.cpio.gz"
 
+###<span id="NFS">Boot via NFS</span>
+D02 supports booting via NFS, and before this step you should make sure that NFS service has been installed.
+<1>Setup NFS service on ubuntu
+a.Install NFS service package
+
+	sudo apt-get install nfs-kernel-server nfs-common portmap
+
+b.Modify configure file /etc/exports
+Add contents at the end of this file as follows:
+
+	/rootnfs *(rw,sync,no_root_squash)
+
+***Note:/rootnfs is the shared directory of nfs.***
+c.Restart nfs service 
+
+	sudo service nfs-kernel-server restart
+
+<2>Modify grub config file grub.cfg according to situation
+```
+set timeout=0
+set default=nfsboot
+menuentry "nfs-boot" --id nfsboot {
+        set root=(tftp,192.168.2.4)
+        linux /Image rdinit=/init console=ttyS0,115200 earlycon=uart8250,mmio32,0x80300000 root=/dev/nfs rw nfsroot=192.168.2.4:/home/chenxiang/nfs ip=dhcp
+        devicetree /hip05-d02.dtb
+}
+```
+Note:Image is the kernel , and hip05-d02 is the dtb file. And the filesystem locates on ***192.168.2.4:/home/chenxiang/nfs***
+<3>Reboot D02 and enter UEFI menu.
+<4>Select item 2: PXE on MAC Address.
