@@ -1,6 +1,6 @@
-title: caliper
+title: Caliper
 date: 2015-03-12 10:27:56
-tags: caliper
+tags: Caliper
 ---
 ###Welcome to the Caliper wiki!
  

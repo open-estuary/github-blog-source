@@ -1,8 +1,8 @@
-title: remote_share_d02_in_open_lab
+title: remotely using D02 boards located in HTSAT open lab
 date: 2015-03-12 10:56:59
-tags: D02 remote_sharing
+tags: D02
 ---
-#Guideline of remote using D02 located in HTSAT open lab
+#Guideline of remotely using D02 boards located in HTSAT open lab
 This is the document about how to remote use the D02 board located in HTSAT open lab. For local environment configure and board hacking , please refer to [D02-hacking-manual](http://hisilicon.github.io/2015/02/10/D02-hacking-manual/ "d02-hacking").
 ## Work requirement
 * FTP client 

@@ -24,9 +24,13 @@ tags: D02
 
 ##<span id="hardware">D02 Board Hardware Features</span>
 Major hardware features of D02 are listed as follow:
-	![](/img/hardware.png)
+
+<img src="http://7vilkn.com1.z0.glb.clouddn.com/d02_structure.jpg" style="width:700px;height:500px;margin-left:30px"/> 
+
 The structure picture of D02 is as follow:
-        ![](/img/d02_structure.jpg)
+
+<img src="http://7vilkn.com1.z0.glb.clouddn.com/hardware.png" style="width:700px;height:500px;margin-left:30px"/> 
+
 ### <span id="architure">The Architecture of D02</span>
 
 The software architecture on D02 is consistented of UEFI,GRUB,Kernel,Distribution and Toolchain.The architecture of D02 is as follow:

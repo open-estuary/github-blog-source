@@ -217,7 +217,6 @@ pre {
 }
 
 pre code, tt {
-    font-size: inherit;
     white-space: -moz-pre-wrap;
     white-space: pre-wrap;
     background: transparent;
@@ -706,7 +705,6 @@ pre .hexcolor,
   color: #099;
 }
 
-pre .string,
 pre .tag pre .value,
 pre .phpdoc,
 .tex pre .formula {

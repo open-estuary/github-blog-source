@@ -151,7 +151,7 @@ And you could download the binary from the link:
         +------------------+------------------------------------+       
         |  .text           |	bootwrapper, HYP switch part    |   
         +------------------+------------------------------------+       
-        |  .monitor	       |	bootwrapper, monitor part       |
+        |  .monitor        |    bootwrapper, monitor part       |
         +------------------+------------------------------------+       
         |  grub2.efi       |    grub binary                     |
         +------------------+------------------------------------+       
@@ -163,7 +163,7 @@ And you could download the binary from the link:
         +------------------+------------------------------------+       
         |  hip04-d01.dtb   |    D01 device tree bianry          |   
         +------------------+------------------------------------+       
-        |  .filesystem	   |	initramfs stored in NAND        |   
+        |  .filesystem     |    initramfs stored in NAND        |   
         +------------------+------------------------------------+       
 
 Linaro also provide a monthly release for it:

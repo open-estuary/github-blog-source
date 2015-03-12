@@ -404,6 +404,7 @@ function generateMetroBanner(){
     $("#metro-banner").AddMetroDoubleButton('metro-gitserver', 'metro-pink', '', 'Hisilicon-GIT', "location.href=\'http://htsat.vicp.cc:801\'");
     $("#metro-banner").AddMetroSimpleButton('metro-D01', 'metro-pink', '', 'D01', "location.href=\'/tags/D01\'");
     $("#metro-banner").AddMetroSimpleButton('metro-D02', 'metro-blue', '', 'D02', "location.href=\'/tags/D02\'");
+    $("#metro-banner").AddMetroDoubleButton('metro-D02', 'metro-green', '', 'Caliper', "location.href=\'/tags/Caliper\'");
 	}
 }
 
