@@ -1,5 +1,5 @@
 title: D02-hacking-manual
-date: 2015-02-10 18:55:25
+date: 2015-04-17 09:05:25
 tags: D02
 ---
 ##Hisilicon Opensource Board D02 hacking manual
@@ -14,9 +14,9 @@ tags: D02
        * [Distributions](#dist)
        * [Toolchain](#toolchain)
 * [D02 Hacking](#hacking)
-    * [UEFI hacking](#UEFIh)
-    * [Kernel hacking](#kernelh)
-    * [Boot via NAND](#NAND)
+    * [UEFI hacking](#UEFI)
+    * [Kernel hacking](#kernel)
+    * [Boot via NORFLASH](#NORFLASH)
     * [Boot via PXE](#PXE)
     * [Boot via SATA](#SATA)
     * [Boot via ACPI](#ACPI)
@@ -51,46 +51,52 @@ The software architecture on D02 is consistented of UEFI,GRUB,Kernel,Distributio
 
 And you could download the binary from the link:
 
-	https://github.com/hisilicon/d02_binary
+	https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary
 
-    +------------------+------------------------------------+       
-    |  filename        |    description                     |
-    +------------------+------------------------------------+    
-    |  D02.fd          |    UEFI binary                     |
-    +------------------+------------------------------------+   
-    |  bl1.bin         |    Trust Fireware binary           |
-    |  fip.bin         |                                    |
-    +------------------+------------------------------------+                    
-    |arch64aa.efi      |    grub binary                     |
-    +------------------+------------------------------------+       
-    |  grub.cfg        |    grub configure                  |        
-    +------------------+------------------------------------+       
-    |  Image           |    kernel image of 3.19            |
-    +------------------+------------------------------------+
-    |hip05-d02.dtb     |    dtb file for kernel 3.19        |
-    +------------------+------------------------------------+              
-    |filesystem.cpio.gz|    initramfs stored in NAND        |   
-    +------------------+------------------------------------+  
+    +----------------------------+------------------------------------+       
+    |  filename                  |    description                     |
+    +----------------------------+------------------------------------+    
+    |  PV660D02_B903_Release.bin |    UEFI binary                     |
+    +----------------------------+------------------------------------+
+    |  CH02_TEVBC_V03.bin        |    CPLD binary                     |
+    +----------------------------+------------------------------------+
+    |  bl1.bin                   |    Trust Fireware binary           |
+    |  fip.bin                   |                                    |
+    +----------------------------+------------------------------------+                    
+    |  arch64aa.efi              |    grub binary                     |
+    +----------------------------+------------------------------------+       
+    |  grub.cfg                  |    grub configure                  |        
+    +----------------------------+------------------------------------+       
+    |  Image                     |    kernel image of 3.19            |
+    +----------------------------+------------------------------------+
+    |  hip05-d02.dtb             |    dtb file for kernel 3.19        |
+    +----------------------------+------------------------------------+              
+    |  hulk-hip05.cpio.gz        |    initramfs stored in NORFLASH    |   
+    +----------------------------+------------------------------------+
+    |  readme                    |    readme                          |
+    +----------------------------+------------------------------------+
 
 ###<span id="function"> The function of each component</span>
 
-<1><span id="UEFI">UEFI</span>:responsible for loading and booting Image and dtb file,and you could download binary file from:
+1.<span id="UEFI">UEFI</span>:responsible for loading and booting Image and dtb file,and you could download binary file from:
 
-    https://github.com/hisilicon/d02_binary/tree/master/UEFI
+    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/PV660D02_B903_Release.bin
 
-<2><span id="GRUB">GRUB</span>:responsible for loading and booting Image and dtb file in another way,and you could download binary file from:
+2.<span id="GRUB">GRUB</span>:grub configure file and grub image file for D02,and you could download binary file from:
 
-    https://github.com/hisilicon/d02_binary/tree/master/grub
+    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/grub.cfg
+    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/grubaa64.efi
 
-<3><span id="kernel">Kernel</span>:the operation system that D02 runs on,and you could get source code from follow website:
+3.<span id="kernel">Kernel</span>:the operation system that D02 runs on,and you could get source code from follow website:
 
-    https://github.com/hisilicon/estuary
+    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/images
+    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/hip05-d02.dtb
 
-<4><span id="dist">Linux Distribution</span>:current release distributions that D02 runs on, and you could dowload them from website:
+4.<span id="dist">Linux Distribution</span>:current release distributions that D02 runs on, and you could dowload them from website:
 
     +-----------+---------------------------------------------------------+
-    | ubuntu    | http://cloud-images.ubuntu.com/releases/14.04/release/  |
-    |           | ubuntu-14.04-server-cloudimg-arm64-root.tar.gz          |
+    | ubuntu    | http://snapshots.linaro.org/ubuntu/images/              |
+    |           |        developer-arm64/latest/                          |
     +-----------+---------------------------------------------------------+
     | openSUSE  | http://download.opensuse.org/ports/aarch64/             |
     |           |       distribution/13.1/appliances/                     |
@@ -100,7 +106,7 @@ And you could download the binary from the link:
     | Debian    |                                                         |
     +-----------+---------------------------------------------------------+
 
-<5><span id="toolchain">Toolchain</span>:used to compile and debug some above files, and now you could download it from follow website:
+5.<span id="toolchain">Toolchain</span>:used to compile and debug some above files, and now you could download it from follow website:
 
     http://releases.linaro.org/14.09/components/toolchain/binaries/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.bz2
 
@@ -111,33 +117,35 @@ And you could download the binary from the link:
 ###<span id="UEFIh">UEFI hacking</span>
 
 FTP protocol is used for downloading between D02 and local network.So before this step, please make sure you have a working FTP server in local network. D02 could get files from network using FTP.
-<1>Prepare files about UEFI on local computer
+1.Prepare files about UEFI on local computer
 There are three files which should be prepared before hacking UEFI:D02.fd for BIOS, bl1.bin and fip.bin for Trust Fireware.Then put them on the root directory of FTP.
-<2>Boot D02 to UEFI SHELL
+
+2.Boot D02 to UEFI SHELL
 Follow these steps to UEFI SHELL:
-
-a.Serial port setting:115200/8/N/1
-
-b.Power on and select 1:
-
-c.Press any key to start UEFI Boot Menu;
-
-d.Select 3 EBL
-
+a.Serial port setting:115200/8/N/1;
+b.Press any key to enter default Boot selection Menu;
+c.Select EBL selection;
 Then D02 enters the UEFI SHELL.
-<3>Update UEFI files
+
+3.Update UEFI files
 a.IP address config
 
 	ifconfig -s eth0 [IP.address] [mask] [gateway]
   	eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
 
-b.Burn UEFI file for BIOS
+b.Burn BIOS file
 
 	provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
-	eg. provision 192.168.10.102 -u sch -p aaa -f D02.fd -a 100000
- 	    spiwfmem 100000 0000000 200000
+	eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
+ 	    spiwfmem 100000 0000000 300000
 
-c.Burn files for Trust Firmware 
+c.Burn CPLD file
+
+    provision [server.IP] -u [user.name] -p [passwd] -f [cpld.bin] -a [address]
+    eg. provision 192.168.10.102 -u sch -p aaa -f CH02_TEVBC_V03.bin -a 100000
+        updatecpld 100000
+
+d.Burn files for Trust Firmware 
 
 	provision [server.IP] -u [user.name] -p [passwd] -f bl1.bin -a [address]
 	provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
@@ -152,28 +160,28 @@ Then D02 must be reset or powered off after this step.
 
 ### how to restore the UEFI when UEFI doesn't work
 Actually D02 can restore two UEFI in case of failure in the default UEFI.you can resore UEFI in the follow way:
-<1>Power off the board and disconnect power supply
-<2>Push the dial swift s3 to the side that has silk screen '3'
-<3>Power on and enter UEFI SHELL
-<4>IP address config
+1.Power off the board and disconnect power supply
+2.Push the dial swift s3 to the side that has silk screen '3'
+3.Power on and enter UEFI SHELL
+4.IP address config
 
 	ifconfig -s eth0 [IP.address] [mask] [gateway]
   	eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
 
-<5>Push the dial swift s3 to the other side that has no silk screen 's'
-<6>Burn UEFI file for BIOS as above part
+5.Push the dial swift s3 to the other side that has no silk screen 's'
+6.Burn UEFI file for BIOS as above part
 Then you have updated your failture BIOS.Then D02 enters the UEFI SHELL.
-<3>Update UEFI files
+7.Update UEFI files
 a.IP address config
 
 	ifconfig -s eth0 [IP.address] [mask] [gateway]
   	eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
 
-b.Burn UEFI file for BIOS
+b.Burn BIOS file
 
 	provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
-	eg. provision 192.168.10.102 -u sch -p aaa -f D02.fd -a 100000
- 	    spiwfmem 100000 0000000 200000
+	eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
+ 	    spiwfmem 100000 0000000 300000
 
 c.Burn files for Trust Firmware 
 
@@ -190,9 +198,12 @@ Then D02 must be reset or powered off after this step.
 
 ###<span id="kernelh"> Kernel Hacking</span>
 
-<1>Download kernel source code from above section
-<2>Setting envirnment from compiling D02 as above
-<3>Build steps as follow:
+1.Download kernel source code from above section
+
+    https://github.com/hisilicon/linaro-kernel.git
+
+2.Setting envirnment from compiling D02 as above
+3.Build steps as follow:
 ```
    export ARCH=arm64
    export CROSS_COMPILE=aarch64-linux-gnu-
@@ -202,39 +213,42 @@ Then D02 must be reset or powered off after this step.
 ```
 Then there are two files that have been created:Image in the directory **arch/arm64/boot/**, and hip05-d02.dtb in the directory **arch/arm64/boot/dts/hisilicon**
 
-### <span id="NAND">Boot via NAND</span>
+### <span id="NORFLASH">Boot via NORFLASH</span>
 
 Boot D02 to UEFI SHELL, and type the follow commands in EBL:
-<1>IP address config
+1.IP address config
 
     ifconfig -s eth0 [IP.address] [mask] [gateway]
-    eg. provision 192.168.10.102 255.255.255.0 102.168.10.1
+    eg. ifconfig 192.168.10.102 255.255.255.0 102.168.10.1
 
-<2>Download Image binary file from FTP
+2.Download Image binary file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [image.file] -a [address]
-    eg. provision 192.168.10.102 -u sch -p aaa -f Image -a 0x80000
+    eg. provision 192.168.10.102 -u sch -p aaa -f Image -a 100000
+        norwfmem 100000 300000 A00000
 
-<3>Download dtb file from FTP
+3.Download dtb file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [dtb.file] -a [address]
-    eg. provision 192.168.10.102 -u sch -p aaa -f hip05-d02.dtb -a
+    eg. provision 192.168.10.102 -u sch -p aaa -f hip05-d02.dtb -a 100000
+        norwfmem 100000 300000 100000
 
-<4>Download filesystem file from FTP
+4.Download filesystem file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [filesystem] -a [address]
-    eg. provision 192.168.10.102 -u sch -p aaa -f filesystem.cpio.gz -a 0x7000000
+    eg. provision 192.168.10.102 -u sch -p aaa -f hulk-hip05.cpio.gz -a 100000
+        norwfmem 100000 1000000 2000000
 
-<5>Reboot D02
-    exit ESL and select 5:ESL Start OS
+5.Reboot D02
+    exit ESL and select:FLASH Start OS
 
 show & change kernel command line in UEFI
 
 ###<span id="PXE"> Boot via PXE</span>
 
 PXE boot depends on DHCP and TFTP services.So before verifing PXE, you need to setup a working DHCP server and TFTP server on your local network. In this case, my case is on ubuntu.
-<1>Setup DHCP server on ubuntu
-Refer to https://help.ubuntu.com/community/isc-dhcp-server.For a simplified direction, try these steps:
+1.Setup DHCP server on ubuntu
+Refer to https://help.ubuntu.com/community/isc-dhcp-server . For a simplified direction, try these steps:
 a.Install DHCP server package
 
 	sudo apt-get install isc-dhcp-server
@@ -266,17 +280,17 @@ d.Use these commands to start or check dhcp service
       sudo service isc-dhcp-server status
       sudo service isc-dhcp-server start
 
-<2>Setup TFTP server on ubuntu
+2.Setup TFTP server on ubuntu
 a.Install TFTP server and TFTP client(optional, tftp-hpa is the client package)
 
       sudo apt-get install tftpd-hpa tftp-hpa
 
 b.Configure the TFTP server, update /etc/default/tftpd-hpa like following:
 
-      TFTP_USERNAME=tftp
-      TFTP_ADDRESS=0.0.0.0:69
-      TFTP_DIRECTORY=/var/lib/tftpboot
-      TFTP_OPTIONS=-l -c -s
+      TFTP_USERNAME="tftp"
+      TFTP_ADDRESS="0.0.0.0:69"
+      TFTP_DIRECTORY="/var/lib/tftpboot"
+      TFTP_OPTIONS="-l -c -s"
 
 c.Set up TFTP server directory
 
@@ -289,13 +303,13 @@ d.Restart TFTP server
       service tftpd-hpa restart
       service tftpd-hpa force-reload
 
-<3>Prepare some files on the TFTP root path
+3.Prepare some files on the TFTP root path
     The files include:grub binary file, grub configure file,Image and dtb file. In my case, they are grubaa64_linux.efi, grub.cfg-01-xx-xx-xx-xx-xx-xx,hip05-d02.dtb and Image.
 
 ***Note:The grub configure file grub.cfg-01-xx-xx-xx-xx-xx-xx ends in D02's mac address.***
 
-<4>Reboot and enter UEFI boot menu
-<5>Select boot from PXE
+4.Reboot and enter UEFI boot menu
+5.Select boot from PXE
 After seral seconds,D02 will boot automaticlly.
 The content of grub file as follow:
 
@@ -319,7 +333,7 @@ The content of grub file as follow:
 ###<span id="SATA"> Boot via SATA</span>
 This part will tell you how to boot D02 via GRUB on SATA disk.In my case, SATA disk
 will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(OpenSUSE release),sda4(miniDistribution),sda5(for user).
-<1>Partition and format SATA disk
+1.Partition and format SATA disk
     Format SATA disk: mkfs -t ext4 /dev/sda
     Partition SATA disk as follow:
 
@@ -337,7 +351,7 @@ will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(Ope
     | sda5    |rest space |    ext4      |   swap   |
     +---------+-----------+--------------+----------+ 
 
-<2>Relative files are placed as follow:
+2.Relative files are placed as follow:
 
         sda1: -------EFI
               |       |
@@ -359,7 +373,7 @@ will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(Ope
 
 ***Note:The names of grub files archaa.efi and grub.cfg can not be modified.***
 
-<3>modify grub config file according to situation
+3.modify grub config file according to situation
 This part we will build 6 different grub config.They are as follow:
 
 	+-----------+-----------+----------------+------------------+
@@ -421,20 +435,19 @@ And the context of grub.cfg file is as follow:
 
 ***Note:If you only want to boot D02 from one kernel and a distribution,one menuentry is left as above.***
 
-<4>Reboot and enter UEFI menu
-<5>Select boot from HD
-<6>Type arrow key up and down to select grub boot menu to decise which kernel and 
-distribution to boot
+4.Reboot and enter UEFI menu
+5.Select boot from HD
+6.Type arrow key up and down to select grub boot menu to decise which kernel and distribution to boot
 
 ###<span id="ACPI"> Boot via ACPI</span>
 D02 also supports booting via ACPI,and the steps are as follows:
-<1>Power on and enter UEFI SHELL
-<2>IP address config
+1.Power on and enter UEFI SHELL
+2.IP address config
 
     ifconfig -s eth0 [IP.address] [mask] [gateway]
     eg. ifconfig -s eth0 192.168.1.102 255.255.255.0 192.168.1.1
 
-<3>Burn the kernel from FTP
+3.Burn the kernel from FTP
 
     provision [server.address] -u [user.name] -p [passwd] -f [kernel] -a [address1]
     mdfile \[kernel] [address1] [address2]
@@ -443,7 +456,7 @@ D02 also supports booting via ACPI,and the steps are as follows:
 
 ***Note:address2 is the real Image size which can be got from above command.***
 
-<4>Burn the filesystem from FTP
+4.Burn the filesystem from FTP
 
     provision [server.address] -u [user.name] -p [passwd] -f [filesystem.cpio.gz] -a [address3]
     mdfile \[filesystem.cpio.gz [address3] [address4]
@@ -452,18 +465,18 @@ D02 also supports booting via ACPI,and the steps are as follows:
 
 ***Note:address4 is the real Image size which can be got from above command.***
 
-<5>Get into directory to check whether boot via ACPI is done
+5.Get into directory to check whether boot via ACPI is done
 
     cd fs0:
     dir
 
-<6>Set the parameters of booting via ACPI
+6.Set the parameters of booting via ACPI
 
     start Image "acpi=fore console=ttyS0,115200 earlycon=uart8250,mmio32,0x80300000 initrd=hulk-hip05.cpio.gz"
 
 ###<span id="NFS">Boot via NFS</span>
 D02 supports booting via NFS, and before this step you should make sure that NFS service has been installed.
-<1>Setup NFS service on ubuntu
+1.Setup NFS service on ubuntu
 a.Install NFS service package
 
 	sudo apt-get install nfs-kernel-server nfs-common portmap
@@ -478,7 +491,7 @@ c.Restart nfs service
 
 	sudo service nfs-kernel-server restart
 
-<2>Modify grub config file grub.cfg according to situation
+2.Modify grub config file grub.cfg according to situation
 ```
 set timeout=0
 set default=nfsboot
@@ -489,5 +502,5 @@ menuentry "nfs-boot" --id nfsboot {
 }
 ```
 Note:Image is the kernel , and hip05-d02 is the dtb file. And the filesystem locates on ***192.168.2.4:/home/chenxiang/nfs***
-<3>Reboot D02 and enter UEFI menu.
-<4>Select item 2: PXE on MAC Address.
+3.Reboot D02 and enter UEFI menu.
+4.Select item 2: PXE on MAC Address.

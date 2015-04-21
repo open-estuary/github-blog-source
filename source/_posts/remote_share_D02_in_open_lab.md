@@ -1,3 +1,7 @@
+title: Remote Using D02 In HTSAT Open lab
+date: 2015-04-17 09:01:00
+tags: D02
+---
 #Remote using D02 in HTSAT open lab
 
 This is a document about how to remote use the D02 board which located in HTSAT open lab. We have deployed two baords in open lab to share with you, if you are interested in D02 development,please don't hesitate to contact with [alan](mailto:huangdaode@hisilicon.com "huangdaode@hisilicon.com") to get your own account.
@@ -28,14 +32,13 @@ Open another terminal and go to the directory where your build image is located.
     scp hip05-d02.dtb XXXX@htsat.vicp.cc:~/ftp/
 
 ### Edit the grub confige file 
-As you log in the host through ssh, the "config" file is linked to the board's grub config file. Therefore, you can edit the config file to add you own information.
+As you log in the host through ssh, the system will create a default config file(grub.conf) for you.Once use the command board_connect successfully, it will replace the board's grub.cfg that the "config" file  linked to. Therefore, you can edit the grub.conf file to add you own information.
     
-    ls config -al  
-    vim config
+    vim grub.conf
     
 ***NOTE: XXX is your account that is assigned by the administrator.***
 ## Part 2 Access the board
-Now it very convenient for you to connect the board. As you have logged in the host, so just type the command below to connect board.
+Now it is very convenient for you to connect the board. As you have logged in the host, so just type the command below to connect board.
 
     board_connect
 
@@ -45,13 +48,9 @@ We have deployed pdu to power the board, so it's convinent to remote reboot the 
 	board_reboot
 	    
 ## Part 4 For provison method to boot the board
-If you want to try provision boot the board, the FTP account and password is the same with your login account! And find the file path by ftp link, for example:
+If you want to try provision boot the board, the FTP account and password is the same with your login account! The root directory is user's home directory, so specify relative path by ftp/XXXXX.bin, an example is:
 
-    ls ~ -al
-    
-It appears ftp -> /home/hisilicon/ftp/remote_d02001, so specify absolute path by /remote-d02001/XXXXX.bin, an example is:
-
-    provision 192.168.1.107 -u account -p password -f /remote_d02001/XXXX.bin -a 100000
+    provision 192.168.1.107 -u account -p password -f ftp/XXXXX.bin -a 100000
 
     
 ## Part 5 Attentions and FAQ
@@ -61,6 +60,6 @@ It appears ftp -> /home/hisilicon/ftp/remote_d02001, so specify absolute path by
 
 *press "ctrl+]" and input "quit" to quit the telnet connection*
 
-3) If there is on activity on the telnet connection in 10 minitues, the connection will disconnect.
+3) If there is no activity on the telnet connection in 10 minitues, the connection will disconnect.
 
 4) For detail information about D02, please connect with [Alan](mailto:huangdaode@hisilicon.com "huangdaode@hisilicon.com").
