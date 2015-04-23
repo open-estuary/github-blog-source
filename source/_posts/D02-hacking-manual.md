@@ -268,7 +268,7 @@ b.Edit /etc/dhcp/dhcpd.conf to suit your needs and particular configuration.Make
      subnet 192.168.0.0 netmask 255.255.255.0 {
          range 192.168.0.160 192.168.0.180;
          option subnet-mask 255.255.255.0;
-         filename "grub2.efi";
+         filename "archaa64.efi";
      }
      #
 
@@ -337,27 +337,27 @@ will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(Ope
     Format SATA disk: mkfs -t ext4 /dev/sda
     Partition SATA disk as follow:
 
-    +---------+-----------+--------------+----------+
-    | Name    |   Size    |    Type      |   Tag    |
-    +---------+-----------+--------------+----------+
-    | sda1    |   200M    |  EFI system  |   EFI    |
-    +---------+-----------+--------------+----------+
-    | sda2    |   10G     |    ext4      |          |
-    +---------+-----------+--------------+----------+
-    | sda3    |   10G     |    ext4      |          |
-    +---------+-----------+--------------+----------+
-    | sda4    |   10G     |    ext4      |          |
-    +---------+-----------+--------------+----------+
-    | sda5    |rest space |    ext4      |   swap   |
-    +---------+-----------+--------------+----------+ 
-
+    +---------+-----------+--------------+------------------+
+    | Name    |   Size    |    Type      |   Tag            |
+    +---------+-----------+--------------+------------------+
+    | sda1    |   200M    |  EFI system  |   EFI            |
+    +---------+-----------+--------------+------------------+
+    | sda2    |   10G     |    ext4      | linux filesystem |
+    +---------+-----------+--------------+------------------+
+    | sda3    |   10G     |    ext4      | linux filesystem |
+    +---------+-----------+--------------+------------------+
+    | sda4    |   10G     |    ext4      | linux filesystem |
+    +---------+-----------+--------------+------------------+
+    | sda5    |rest space |    ext4      | linux swap       |
+    +---------+-----------+--------------+------------------+ 
+    ***Note:EFI system should have a fat filesystem, so we should format sda1 with "mkfs.vfat /dev/sda1".***
 2.Relative files are placed as follow:
 
         sda1: -------EFI
               |       |
-              |       ------archaa.efi
-              |       |
-              |       ------grub.cfg
+              |       GRUB2-----archaa64.efi
+              |            |
+              |            ------grub.cfg
               |
               |-------------Image_3.1
               |
@@ -371,7 +371,7 @@ will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(Ope
         sda4: miniDistribution
         sda5: left for user
 
-***Note:The names of grub files archaa.efi and grub.cfg can not be modified.***
+***Note:The names of grub files archaa64.efi is the same name with filename item in DHCP configure file /etc/dhcp/dhcpd.conf.***
 
 3.modify grub config file according to situation
 This part we will build 6 different grub config.They are as follow:
