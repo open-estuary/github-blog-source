@@ -151,7 +151,7 @@ d.Burn files for Trust Firmware
 	provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
 	eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
 	    spiwfmem 100000 200000 10000
-            provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
+        provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
 	    spiwfmem 100000 220000 10000
 
 Then D02 must be reset or powered off after this step.
@@ -231,7 +231,7 @@ Boot D02 to UEFI SHELL, and type the follow commands in EBL:
 
     provision [server.IP] -u [user.name] -p [passwd] -f [dtb.file] -a [address]
     eg. provision 192.168.10.102 -u sch -p aaa -f hip05-d02.dtb -a 100000
-        norwfmem 100000 300000 100000
+        spiwfmem 100000 300000 100000
 
 4.Download filesystem file from FTP
 
