@@ -401,7 +401,7 @@ $(document).on({
 function generateMetroBanner(){
 	if(0 == $("#metro-banner")[0].childElementCount){
     $("#metro-banner").AddMetroDoubleButton('metro-lava', 'metro-green', '', 'Hisilicon-LAVA', "location.href=\'http://htsat.vicp.cc:800\'");
-    $("#metro-banner").AddMetroDoubleButton('metro-gitserver', 'metro-pink', '', 'Hisilicon-GIT', "location.href=\'http://htsat.vicp.cc:801\'");
+    $("#metro-banner").AddMetroDoubleButton('metro-gitserver', 'metro-pink', '', 'Hisilicon-GIT', "location.href=\'https://github.com/hisilicon/estuary\'");
     $("#metro-banner").AddMetroSimpleButton('metro-D01', 'metro-pink', '', 'D01', "location.href=\'/tags/D01\'");
     $("#metro-banner").AddMetroSimpleButton('metro-D02', 'metro-blue', '', 'D02', "location.href=\'/tags/D02\'");
     $("#metro-banner").AddMetroDoubleButton('metro-D02', 'metro-green', '', 'Caliper', "location.href=\'/tags/Caliper\'");

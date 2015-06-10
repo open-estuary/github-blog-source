@@ -96,7 +96,8 @@ And you could download the binary from the link:
 
     +-----------+---------------------------------------------------------+
     | ubuntu    | http://snapshots.linaro.org/ubuntu/images/              |
-    |           |        developer-arm64/latest/                          |
+    |           |       developer-arm64/94/                               |
+    |           |       linaro-vivid-developer-20150520-94.tar.gz         |
     +-----------+---------------------------------------------------------+
     | openSUSE  | http://download.opensuse.org/ports/aarch64/             |
     |           |       distribution/13.1/appliances/                     |
@@ -117,42 +118,48 @@ And you could download the binary from the link:
 ###<span id="UEFIh">UEFI hacking</span>
 
 FTP protocol is used for downloading between D02 and local network.So before this step, please make sure you have a working FTP server in local network. D02 could get files from network using FTP.
-1.Prepare files about UEFI on local computer
-There are three files which should be prepared before hacking UEFI:D02.fd for BIOS, bl1.bin and fip.bin for Trust Fireware.Then put them on the root directory of FTP.
 
-2.Boot D02 to UEFI SHELL
-Follow these steps to UEFI SHELL:
-a.Serial port setting:115200/8/N/1;
-b.Press any key to enter default Boot selection Menu;
-c.Select EBL selection;
-Then D02 enters the UEFI SHELL.
+1. Prepare files about UEFI on local computer
 
-3.Update UEFI files
-a.IP address config
+	There are three files which should be prepared before hacking UEFI:D02.fd for BIOS, bl1.bin and fip.bin for Trust Fireware.Then put them on the root directory of FTP.
 
-	ifconfig -s eth0 [IP.address] [mask] [gateway]
-  	eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
+2. Boot D02 to UEFI SHELL
 
-b.Burn BIOS file
+	Follow these steps to UEFI SHELL:
 
-	provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
-	eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
- 	    spiwfmem 100000 0000000 300000
+		a.Serial port setting:115200/8/N/1;
+		b.Press any key to enter default Boot selection Menu;
+		c.Select EBL selection;
 
-c.Burn CPLD file
+	Then D02 enters the UEFI SHELL.
 
-    provision [server.IP] -u [user.name] -p [passwd] -f [cpld.bin] -a [address]
-    eg. provision 192.168.10.102 -u sch -p aaa -f CH02_TEVBC_V03.bin -a 100000
-        updatecpld 100000
+3. Update UEFI files
 
-d.Burn files for Trust Firmware 
+ * IP address config
 
-	provision [server.IP] -u [user.name] -p [passwd] -f bl1.bin -a [address]
-	provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
-	eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
-	    spiwfmem 100000 200000 10000
-        provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
-	    spiwfmem 100000 220000 10000
+			ifconfig -s eth0 [IP.address] [mask] [gateway]
+			eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
+
+ * Burn BIOS file
+
+			provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
+			eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
+			spiwfmem 100000 0000000 300000
+
+ * Burn CPLD file
+
+			provision [server.IP] -u [user.name] -p [passwd] -f [cpld.bin] -a [address]
+			eg. provision 192.168.10.102 -u sch -p aaa -f CH02_TEVBC_V03.bin -a 100000
+			updatecpld 100000
+
+ * Burn files for Trust Firmware 
+
+			provision [server.IP] -u [user.name] -p [passwd] -f bl1.bin -a [address]
+			provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
+			eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
+			spiwfmem 100000 200000 10000
+			provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
+			spiwfmem 100000 220000 10000
 
 Then D02 must be reset or powered off after this step.
 
@@ -160,37 +167,38 @@ Then D02 must be reset or powered off after this step.
 
 ### how to restore the UEFI when UEFI doesn't work
 Actually D02 can restore two UEFI in case of failure in the default UEFI.you can resore UEFI in the follow way:
-1.Power off the board and disconnect power supply
-2.Push the dial swift s3 to the side that has silk screen '3'
-3.Power on and enter UEFI SHELL
-4.IP address config
+
+1. Power off the board and disconnect power supply
+2. Push the dial swift s3 to the side that has silk screen '3'
+3. Power on and enter UEFI SHELL
+4. IP address config
 
 	ifconfig -s eth0 [IP.address] [mask] [gateway]
   	eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
 
-5.Push the dial swift s3 to the other side that has no silk screen 's'
-6.Burn UEFI file for BIOS as above part
+5. Push the dial swift s3 to the other side that has no silk screen 's'
+6. Burn UEFI file for BIOS as above part
 Then you have updated your failture BIOS.Then D02 enters the UEFI SHELL.
-7.Update UEFI files
-a.IP address config
+7. Update UEFI files
+  * IP address config
 
-	ifconfig -s eth0 [IP.address] [mask] [gateway]
-  	eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
+			ifconfig -s eth0 [IP.address] [mask] [gateway]
+			eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
 
-b.Burn BIOS file
+  * Burn BIOS file
 
-	provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
-	eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
- 	    spiwfmem 100000 0000000 300000
+			provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
+			eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
+			spiwfmem 100000 0000000 300000
 
-c.Burn files for Trust Firmware 
+  * Burn files for Trust Firmware 
 
-	provision [server.IP] -u [user.name] -p [passwd] -f bl1.bin -a [address]
-	provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
-	eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
-	    spiwfmem 100000 200000 10000
-            provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
-	    spiwfmem 100000 220000 10000
+			provision [server.IP] -u [user.name] -p [passwd] -f bl1.bin -a [address]
+			provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
+			eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
+			spiwfmem 100000 200000 10000
+			provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
+			spiwfmem 100000 220000 10000
 
 Then D02 must be reset or powered off after this step.
 
@@ -492,15 +500,15 @@ c.Restart nfs service
 	sudo service nfs-kernel-server restart
 
 2.Modify grub config file grub.cfg according to situation
-```
-set timeout=0
-set default=nfsboot
-menuentry "nfs-boot" --id nfsboot {
+
+	set timeout=0
+	set default=nfsboot
+	menuentry "nfs-boot" --id nfsboot {
         set root=(tftp,192.168.2.4)
         linux /Image rdinit=/init console=ttyS0,115200 earlycon=uart8250,mmio32,0x80300000 root=/dev/nfs rw nfsroot=192.168.2.4:/home/chenxiang/nfs ip=dhcp
         devicetree /hip05-d02.dtb
-}
-```
+	}
+
 Note:Image is the kernel , and hip05-d02 is the dtb file. And the filesystem locates on ***192.168.2.4:/home/chenxiang/nfs***
 3.Reboot D02 and enter UEFI menu.
 4.Select item 2: PXE on MAC Address.
