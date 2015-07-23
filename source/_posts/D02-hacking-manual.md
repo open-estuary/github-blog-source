@@ -115,15 +115,19 @@ And you could download the binary from the link:
 
 ##<span id="hacking">D02 hacking</span>
 
-###<span id="UEFIh">UEFI hacking</span>
+###<span id="UEFI">UEFI hacking</span>
 
 FTP protocol is used for downloading between D02 and local network.So before this step, please make sure you have a working FTP server in local network. D02 could get files from network using FTP.
 
-1. Prepare files about UEFI on local computer
+1. Check the hardware of D02 board
+
+	You should check the type of dimm and disk on D02 board. For disks, it should satisfy the specification of **SATA3**.For dimms, it should satisfy the specification of xxxx and xxxx.
+
+2. Prepare files about UEFI on local computer
 
 	There are three files which should be prepared before hacking UEFI:D02.fd for BIOS, bl1.bin and fip.bin for Trust Fireware.Then put them on the root directory of FTP.
 
-2. Boot D02 to UEFI SHELL
+3. Boot D02 to UEFI SHELL
 
 	Follow these steps to UEFI SHELL:
 
@@ -133,7 +137,7 @@ FTP protocol is used for downloading between D02 and local network.So before thi
 
 	Then D02 enters the UEFI SHELL.
 
-3. Update UEFI files
+4. Update UEFI files
 
  * IP address config
 
@@ -143,19 +147,23 @@ FTP protocol is used for downloading between D02 and local network.So before thi
  * Burn BIOS file
 
 			provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
+			spiwfmem [source address] [offset] [data length]
 			eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
 			spiwfmem 100000 0000000 300000
 
  * Burn CPLD file
 
 			provision [server.IP] -u [user.name] -p [passwd] -f [cpld.bin] -a [address]
+			updatecpld [address]
 			eg. provision 192.168.10.102 -u sch -p aaa -f CH02_TEVBC_V03.bin -a 100000
 			updatecpld 100000
 
- * Burn files for Trust Firmware 
+ * Burn files for Trust Firmware(this step is not necessary when the format of UEFI is end of **fd** which is consist of trusted firmware and uefi) 
 
 			provision [server.IP] -u [user.name] -p [passwd] -f bl1.bin -a [address]
+			spiwfmem [source address] [offset] [data length]
 			provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
+			spiwfmem [source address] [offset] [data length]
 			eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
 			spiwfmem 100000 200000 10000
 			provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
@@ -188,13 +196,16 @@ Then you have updated your failture BIOS.Then D02 enters the UEFI SHELL.
   * Burn BIOS file
 
 			provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
+			spiwfmem [source address] [offset] [data length]
 			eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
 			spiwfmem 100000 0000000 300000
 
-  * Burn files for Trust Firmware 
+  * Burn files for Trust Firmware (This step is not necessary when the version of BIOS is B903 or more than B903)
 
 			provision [server.IP] -u [user.name] -p [passwd] -f bl1.bin -a [address]
+			spiwfmem [source address] [offset] [data length]
 			provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
+			spiwfmem [source address] [offset] [data length]
 			eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
 			spiwfmem 100000 200000 10000
 			provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
@@ -227,25 +238,28 @@ Boot D02 to UEFI SHELL, and type the follow commands in EBL:
 1.IP address config
 
     ifconfig -s eth0 [IP.address] [mask] [gateway]
-    eg. ifconfig 192.168.10.102 255.255.255.0 102.168.10.1
+    eg. ifconfig -s eth0 192.168.10.102 255.255.255.0 192.168.10.1
 
 2.Download Image binary file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [image.file] -a [address]
+    norwfmem [source address] [offset] [data length]
     eg. provision 192.168.10.102 -u sch -p aaa -f Image -a 100000
-        norwfmem 100000 300000 A00000
+        norwfmem 100000 100000 2000000
 
 3.Download dtb file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [dtb.file] -a [address]
+    spiwfmem [source address] [offset] [data length]
     eg. provision 192.168.10.102 -u sch -p aaa -f hip05-d02.dtb -a 100000
         spiwfmem 100000 300000 100000
 
 4.Download filesystem file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [filesystem] -a [address]
+    norwfmem [source address] [offset] [data length]
     eg. provision 192.168.10.102 -u sch -p aaa -f hulk-hip05.cpio.gz -a 100000
-        norwfmem 100000 1000000 2000000
+        norwfmem 100000 2000000 4000000
 
 5.Reboot D02
     exit ESL and select:FLASH Start OS
@@ -359,6 +373,30 @@ will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(Ope
     | sda5    |rest space |    ext4      | linux swap       |
     +---------+-----------+--------------+------------------+ 
     ***Note:EFI system should have a fat filesystem, so we should format sda1 with "mkfs.vfat /dev/sda1".***
+
+###How to process with the disk when the disk is seagate but not made by samsung
+a.Find a pc or another board which can identify this disk
+You should find a pc or another board which can identify this disk, and the system of pc or board should be linux system. For us,we can use D01 board.
+
+b.Use tool fdisk to process this disk
+
+	format the disk firstly: 
+                        mkfs.ext4 /dev/sda
+	add a gpt to this disk : 
+                        fdisk /dev/sda
+                        g-------add a gpt partition
+	add some EFI partition : 
+                        n-------add a partition
+                        1-------the number of partition
+                        +200M---------size of partition
+                        t-------change the type of partition
+                        EFI system
+	add some anther partition  ...
+	save the change	       : w
+	formate EFI partition  : mkfs.vfat /dev/sda1
+
+Then this disk can be identified by D02 board.
+
 2.Relative files are placed as follow:
 
         sda1: -------EFI
