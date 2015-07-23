@@ -374,7 +374,8 @@ will be partitioned into five parts:sda1(EFI part),sda2(ubuntu release),sda3(Ope
     +---------+-----------+--------------+------------------+ 
     ***Note:EFI system should have a fat filesystem, so we should format sda1 with "mkfs.vfat /dev/sda1".***
 
-###How to process with the disk when the disk is seagate but not made by samsung
+###How to process with the disk when the disk is not identified by D02 board
+when the disk is not identified by D02, you can try the following step to process the disk.(for some specfic disk eg seagate disk made by samsung, it can be useful) 
 a.Find a pc or another board which can identify this disk
 You should find a pc or another board which can identify this disk, and the system of pc or board should be linux system. For us,we can use D01 board.
 
