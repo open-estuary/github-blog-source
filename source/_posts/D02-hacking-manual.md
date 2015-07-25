@@ -121,7 +121,7 @@ FTP protocol is used for downloading between D02 and local network.So before thi
 
 1. Check the hardware of D02 board
 
-	You should check the type of dimm and disk on D02 board. For disks, it should satisfy the specification of **SATA3**.For dimms, it should satisfy the specification of xxxx and xxxx.
+	You should check the type of dimm and disk on D02 board. For disks, it should satisfy the specification of **SATA3**.For dimms, it should satisfy the specification of **UDIMM 2Rank 8Gbytes** and **RDIMM 2Rank 8Gbytes**.
 
 2. Prepare files about UEFI on local computer
 
@@ -245,7 +245,7 @@ Boot D02 to UEFI SHELL, and type the follow commands in EBL:
     provision [server.IP] -u [user.name] -p [passwd] -f [image.file] -a [address]
     norwfmem [source address] [offset] [data length]
     eg. provision 192.168.10.102 -u sch -p aaa -f Image -a 100000
-        norwfmem 100000 100000 2000000
+        norwfmem 100000 100000 1f00000
 
 3.Download dtb file from FTP
 
