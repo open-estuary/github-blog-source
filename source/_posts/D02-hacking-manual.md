@@ -142,20 +142,20 @@ FTP protocol is used for downloading between D02 and local network.So before thi
  * IP address config
 
 			ifconfig -s eth0 [IP.address] [mask] [gateway]
-			eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
+			eg. ifconfig -s eth0  192.168.1.4 255.255.255.0 192.168.1.1
 
  * Burn BIOS file
 
 			provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
 			spiwfmem [source address] [offset] [data length]
-			eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
+			eg. provision 192.168.1.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
 			spiwfmem 100000 0000000 300000
 
  * Burn CPLD file
 
 			provision [server.IP] -u [user.name] -p [passwd] -f [cpld.bin] -a [address]
 			updatecpld [address]
-			eg. provision 192.168.10.102 -u sch -p aaa -f CH02_TEVBC_V03.bin -a 100000
+			eg. provision 192.168.1.102 -u sch -p aaa -f CH02_TEVBC_V03.bin -a 100000
 			updatecpld 100000
 
  * Burn files for Trust Firmware(this step is not necessary when the format of UEFI is end of **fd** which is consist of trusted firmware and uefi) 
@@ -164,9 +164,9 @@ FTP protocol is used for downloading between D02 and local network.So before thi
 			spiwfmem [source address] [offset] [data length]
 			provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
 			spiwfmem [source address] [offset] [data length]
-			eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
+			eg. provision 192.168.1.102 -u sch -p aaa -f bl1.bin -a 100000
 			spiwfmem 100000 200000 10000
-			provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
+			provision 192.168.1.102 -u sch -p aaa -f fip.bin -a 100000
 			spiwfmem 100000 220000 10000
 
 Then D02 must be reset or powered off after this step.
@@ -182,7 +182,7 @@ Actually D02 can restore two UEFI in case of failure in the default UEFI.you can
 4. IP address config
 
 	ifconfig -s eth0 [IP.address] [mask] [gateway]
-  	eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
+  	eg. ifconfig -s eth0  192.168.1.4 255.255.255.0 192.168.1.1
 
 5. Push the dial swift s3 to the other side that has no silk screen 's'
 6. Burn UEFI file for BIOS as above part
@@ -191,13 +191,13 @@ Then you have updated your failture BIOS.Then D02 enters the UEFI SHELL.
   * IP address config
 
 			ifconfig -s eth0 [IP.address] [mask] [gateway]
-			eg. ifconfig -s eth0  192.168.10.4 255.255.255.0 192.168.10.1
+			eg. ifconfig -s eth0  192.168.1.4 255.255.255.0 192.168.1.1
 
   * Burn BIOS file
 
 			provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
 			spiwfmem [source address] [offset] [data length]
-			eg. provision 192.168.10.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
+			eg. provision 192.168.1.102 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
 			spiwfmem 100000 0000000 300000
 
   * Burn files for Trust Firmware (This step is not necessary when the version of BIOS is B903 or more than B903)
@@ -206,9 +206,9 @@ Then you have updated your failture BIOS.Then D02 enters the UEFI SHELL.
 			spiwfmem [source address] [offset] [data length]
 			provision [server.IP] -u [user.name] -p [passwd] -f fip.bin -a [address]
 			spiwfmem [source address] [offset] [data length]
-			eg. provision 192.168.10.102 -u sch -p aaa -f bl1.bin -a 100000
+			eg. provision 192.168.1.102 -u sch -p aaa -f bl1.bin -a 100000
 			spiwfmem 100000 200000 10000
-			provision 192.168.10.102 -u sch -p aaa -f fip.bin -a 100000
+			provision 192.168.1.102 -u sch -p aaa -f fip.bin -a 100000
 			spiwfmem 100000 220000 10000
 
 Then D02 must be reset or powered off after this step.
@@ -238,27 +238,27 @@ Boot D02 to UEFI SHELL, and type the follow commands in EBL:
 1.IP address config
 
     ifconfig -s eth0 [IP.address] [mask] [gateway]
-    eg. ifconfig -s eth0 192.168.10.102 255.255.255.0 192.168.10.1
+    eg. ifconfig -s eth0 192.168.1.102 255.255.255.0 192.168.1.1
 
 2.Download Image binary file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [image.file] -a [address]
     norwfmem [source address] [offset] [data length]
-    eg. provision 192.168.10.102 -u sch -p aaa -f Image -a 100000
+    eg. provision 192.168.1.102 -u sch -p aaa -f Image -a 100000
         norwfmem 100000 100000 1f00000
 
 3.Download dtb file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [dtb.file] -a [address]
     spiwfmem [source address] [offset] [data length]
-    eg. provision 192.168.10.102 -u sch -p aaa -f hip05-d02.dtb -a 100000
+    eg. provision 192.168.1.102 -u sch -p aaa -f hip05-d02.dtb -a 100000
         spiwfmem 100000 300000 100000
 
 4.Download filesystem file from FTP
 
     provision [server.IP] -u [user.name] -p [passwd] -f [filesystem] -a [address]
     norwfmem [source address] [offset] [data length]
-    eg. provision 192.168.10.102 -u sch -p aaa -f hulk-hip05.cpio.gz -a 100000
+    eg. provision 192.168.1.102 -u sch -p aaa -f hulk-hip05.cpio.gz -a 100000
         norwfmem 100000 2000000 4000000
 
 5.Reboot D02

@@ -1,7 +1,6 @@
 #how to install
 
 ##for the first time
-
 	wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
 	nvm install 0.10
 	npm install hexo@2.8.3 -g
@@ -9,16 +8,17 @@
 	npm install hexo-renderer-stylus@0.1
 
 ##if you have installed nvm 0.10
-
 	nvm use 0.10
 	npm install hexo@2.8.3 -g
 	npm install hexo-renderer-marked@0.1
 	npm install hexo-renderer-stylus@0.1
 
-#how to update 
-	
+##fetch source code
 	git clone https://github.com/joyxu/hisilicon-blog.git
 	cd hisilicon-blog
+
+##add title and update 
+	nvm use 0.10
 	hexo n "new title"
 	hexo g
 	hexo s //check at your local web browser
