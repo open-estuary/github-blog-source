@@ -49,14 +49,20 @@ The software architecture on D02 is consistented of UEFI,GRUB,Kernel,Distributio
 	| +------+------+------+||      |
 	+-----------------------++------+
 
-And you could download the binary from the link:
+You can have a quick trying with all binaries, which can be downloaded from following link:
 
-	https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary
+	https://github.com/hisilicon/estuary/releases
+
+Here, you can select your favorite version on left of page firstly, then download any files in the version as you like.
+
+	e.g.: wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/Image
+
+All binaries and their descriptions are listed as follows:
 
     +----------------------------+------------------------------------+       
-    |  filename                  |    description                     |
+    |  FILE NAME                 |    DESCRIPTION                     |
     +----------------------------+------------------------------------+    
-    |  PV660D02_B903_Release.bin |    UEFI binary                     |
+    |  UEFI.bin                  |    UEFI binary                     |
     +----------------------------+------------------------------------+
     |  CH02_TEVBC_V03.bin        |    CPLD binary                     |
     +----------------------------+------------------------------------+
@@ -77,39 +83,32 @@ And you could download the binary from the link:
     +----------------------------+------------------------------------+
 
 ###<span id="function"> The function of each component</span>
-
 1.<span id="UEFI">UEFI</span>:responsible for loading and booting Image and dtb file,and you could download binary file from:
 
-    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/PV660D02_B903_Release.bin
+	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/UEFI_release.bin 
 
 2.<span id="GRUB">GRUB</span>:grub configure file and grub image file for D02,and you could download binary file from:
 
-    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/grub.cfg
-    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/grubaa64.efi
+	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/grub.cfg
+	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/grubaa64.efi
 
 3.<span id="kernel">Kernel</span>:the operation system that D02 runs on,and you could get source code from follow website:
 
-    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/images
-    https://github.com/hisilicon/estuary/tree/estuary-v1.1/binary/hip05-d02.dtb
+	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/Image
+	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/hip05-d02.dtb
 
 4.<span id="dist">Linux Distribution</span>:current release distributions that D02 runs on, and you could dowload them from website:
 
-    +-----------+---------------------------------------------------------+
-    | ubuntu    | http://snapshots.linaro.org/ubuntu/images/              |
-    |           |       developer-arm64/94/                               |
-    |           |       linaro-vivid-developer-20150520-94.tar.gz         |
-    +-----------+---------------------------------------------------------+
-    | openSUSE  | http://download.opensuse.org/ports/aarch64/             |
-    |           |       distribution/13.1/appliances/                     |
-    +-----------+---------------------------------------------------------+
-    | Fedora    |                                                         |
-    +-----------+---------------------------------------------------------+
-    | Debian    |                                                         |
-    +-----------+---------------------------------------------------------+
+	Ubuntu:     wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/ubuntu-vivid.img.tar.gz
+	OpenSUSE:   wget -c http://download.opensuse.org/ports/aarch64/distribution/13.2/appliances/openSUSE-13.2-ARM-E17.aarch64-rootfs.aarch64-Current.tbz
+	Fedora:     wget -c https://github.cpm/hisilicon/estuary/releases/download/bin-v1.2/fedora-22.img.tar.gz
+	Redhat:     TBD
+	Debian:     TBD
+	OpenEmbedded: TBD
 
 5.<span id="toolchain">Toolchain</span>:used to compile and debug some above files, and now you could download it from follow website:
 
-    http://releases.linaro.org/14.09/components/toolchain/binaries/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.bz2
+    wget -c http://releases.linaro.org/14.09/components/toolchain/binaries/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.bz2
 
 ***Note:you should export the path of toolchain after you download and decompression it.***
 
@@ -217,9 +216,9 @@ Then D02 must be reset or powered off after this step.
 
 ###<span id="kernelh"> Kernel Hacking</span>
 
-1.Download kernel source code from above section
+1.Clone the latest kernel source code with following command 
 
-    https://github.com/hisilicon/linaro-kernel.git
+    git clone https://github.com/hisilicon/linaro-kernel.git -b estuary
 
 2.Setting envirnment from compiling D02 as above
 3.Build steps as follow:
@@ -230,6 +229,7 @@ Then D02 must be reset or powered off after this step.
    make -j16
    make ./hisilicon/hip05-d02.dtb
 ```
+Or you can also directly do build.sh in kernel tree directory.
 Then there are two files that have been created:Image in the directory **arch/arm64/boot/**, and hip05-d02.dtb in the directory **arch/arm64/boot/dts/hisilicon**
 
 ### <span id="NORFLASH">Boot via NORFLASH</span>
