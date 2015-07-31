@@ -62,7 +62,7 @@ All binaries and their descriptions are listed as follows:
     +----------------------------+------------------------------------+       
     |  FILE NAME                 |    DESCRIPTION                     |
     +----------------------------+------------------------------------+    
-    |  UEFI.bin                  |    UEFI binary                     |
+    |  UEFI_Release.bin          |    UEFI binary                     |
     +----------------------------+------------------------------------+
     |  CH02_TEVBC_V03.bin        |    CPLD binary                     |
     +----------------------------+------------------------------------+
@@ -85,7 +85,7 @@ All binaries and their descriptions are listed as follows:
 ###<span id="function"> The function of each component</span>
 1.<span id="UEFI">UEFI</span>:responsible for loading and booting Image and dtb file,and you could download binary file from:
 
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/UEFI_release.bin 
+	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/UEFI_Release.bin 
 
 2.<span id="GRUB">GRUB</span>:grub configure file and grub image file for D02,and you could download binary file from:
 
@@ -145,9 +145,9 @@ FTP protocol is used for downloading between D02 and local network.So before thi
 
  * Burn BIOS file
 
-			provision [server.IP] -u [user.name] -p [passwd] -f [UEFI.fd] -a [address]
+			provision [server.IP] -u [user.name] -p [passwd] -f [UEFI_Release.bin] -a [address]
 			spiwfmem [source address] [offset] [data length]
-			eg. provision 192.168.1.107 -u sch -p aaa -f PV660D02_B903_Release.bin -a 100000
+			eg. provision 192.168.1.107 -u sch -p aaa -f UEFI_Release.bin -a 100000
 			spiwfmem 100000 0000000 300000
 
  * Burn CPLD file
