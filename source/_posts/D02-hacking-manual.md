@@ -90,7 +90,7 @@ All binaries and their descriptions are listed as follows:
 	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/grub.cfg
 	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/grubaa64.efi
 
-3.<span id="kernel">Kernel</span>:the operation system that D02 runs on,and you could get source code from follow website:
+3.<span id="kernel">Kernel</span>:the operation system that D02 runs on,and you could binary files from following website:
 
 	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/Image
 	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/hip05-d02.dtb
@@ -104,9 +104,13 @@ All binaries and their descriptions are listed as follows:
 	Debian:     TBD
 	OpenEmbedded: TBD
 
-5.<span id="toolchain">Toolchain</span>:used to compile and debug some above files, and now you could download it from follow website:
+5.<span id="toolchain">Toolchain</span>:used to compile and debug some above files, and now you could download it from following website:
 
     wget -c http://releases.linaro.org/14.09/components/toolchain/binaries/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.bz2
+	
+6.<span id="source code">source code</span>: you can get all source code mentioned above according to the README file in following repository:
+
+	https://github.com/hisilicon/estuary
 
 ***Note:you should export the path of toolchain after you download and decompression it.***
 
