@@ -79,8 +79,6 @@ All binaries and their descriptions are listed as follows:
     +----------------------------+------------------------------------+              
     |  hulk-hip05.cpio.gz        |    initramfs stored in NORFLASH    |   
     +----------------------------+------------------------------------+
-    |  readme                    |    readme                          |
-    +----------------------------+------------------------------------+
 
 ###<span id="function"> The function of each component</span>
 1.<span id="UEFI">UEFI</span>:responsible for loading and booting Image and dtb file,and you could download binary file from:
