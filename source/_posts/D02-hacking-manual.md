@@ -13,6 +13,7 @@ tags: D02
        * [Kernel](#kernel)
        * [Distributions](#dist)
        * [Toolchain](#toolchain)
+       * [SourceCode](#sourcecode)
 * [D02 Hacking](#hacking)
     * [UEFI hacking](#UEFI)
     * [Kernel hacking](#kernel)
@@ -117,7 +118,7 @@ All original distributions without validation for this project's boards can be d
 
     wget -c http://releases.linaro.org/14.09/components/toolchain/binaries/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.bz2
 	
-6.<span id="source code">Source Code</span>: you can get all source code mentioned above according to the README file in following repository:
+6.<span id="sourcecode">Source Code</span>: you can get all source code mentioned above according to the README file in following repository:
 
 	https://github.com/hisilicon/estuary
 
