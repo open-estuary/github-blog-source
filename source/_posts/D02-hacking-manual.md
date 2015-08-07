@@ -95,20 +95,29 @@ All binaries and their descriptions are listed as follows:
 	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/Image
 	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/hip05-d02.dtb
 
-4.<span id="dist">Linux Distribution</span>: Because the distribution's Images are too large, all of them are storaged into another place, you can dowload them from following website, the default user name and passowrd are: ubuntu, ubuntu.
+4.<span id="dist">Linux Distribution</span>: Because the distribution's Images are too large, all of them are storaged into another place. The validated distributions for this project's boards can be downloaded from following website, the default user name and passowrd of distributions are: ubuntu, ubuntu.
 
 	Ubuntu:     wget -c http://7xjz0v.com1.z0.glb.clouddn.com/dist/ubuntu-vivid.img.tar.gz
-	OpenSUSE:   wget -c http://download.opensuse.org/ports/aarch64/distribution/13.2/appliances/openSUSE-13.2-ARM-E17.aarch64-rootfs.aarch64-Current.tbz (no validation)
-	Fedora:     TBD
-	Redhat:     TBD
-	Debian:     TBD
+	OpenSUSE:	TBD
+	Fedora:		TBD
+	Redhat:		TBD
+	Debian:		TBD
 	OpenEmbedded: TBD
+
+All original distributions without validation for this project's boards can be downloaded from follows:
+
+	Ubuntu:		wget -c https://cloud-images.ubuntu.com/vivid/current/vivid-server-cloudimg-arm64.tar.gz
+	OpenSUSE:   wget -c http://download.opensuse.org/ports/aarch64/distribution/13.2/appliances/openSUSE-13.2-ARM-JeOS.aarch64-rootfs.aarch64-Current.tbz
+	Fedora:     wget -c http://dmarlin.fedorapeople.org/fedora-arm/aarch64/F21-20140407-foundation-v8.tar.xz
+	Redhat:     TBD
+	Debian:     wget -c http://people.debian.org/~wookey/bootstrap/rootfs/debian-unstable-arm64.tar.gz
+	OpenEmbedded: wget -c http://releases.linaro.org/14.06/openembedded/aarch64/vexpress64-openembedded_minimal-armv8-gcc-4.8_20140623-668.img.gz
 
 5.<span id="toolchain">Toolchain</span>:used to compile and debug some above files, and now you could download it from following website:
 
     wget -c http://releases.linaro.org/14.09/components/toolchain/binaries/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.bz2
 	
-6.<span id="source code">source code</span>: you can get all source code mentioned above according to the README file in following repository:
+6.<span id="source code">Source Code</span>: you can get all source code mentioned above according to the README file in following repository:
 
 	https://github.com/hisilicon/estuary
 
