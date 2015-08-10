@@ -400,11 +400,12 @@ $(document).on({
 
 function generateMetroBanner(){
 	if(0 == $("#metro-banner")[0].childElementCount){
-    $("#metro-banner").AddMetroDoubleButton('metro-lava', 'metro-green', '', 'LAVA System', "location.href=\'http://htsat.vicp.cc:800\'");
-    $("#metro-banner").AddMetroDoubleButton('metro-gitserver', 'metro-pink', '', 'Source Code', "location.href=\'https://github.com/hisilicon/estuary\'");
-    $("#metro-banner").AddMetroSimpleButton('metro-D01', 'metro-pink', '', 'D01', "location.href=\'/tags/D01\'");
-    $("#metro-banner").AddMetroSimpleButton('metro-D02', 'metro-blue', '', 'D02', "location.href=\'/tags/D02\'");
-    $("#metro-banner").AddMetroDoubleButton('metro-D02', 'metro-green', '', 'Caliper', "location.href=\'/tags/Caliper\'");
+    $("#metro-banner").AddMetroDoubleButton('metro-Quick', 'metro-green', '', 'Quick Start', "location.href=\'/tags/Quick-Start\'");
+    $("#metro-banner").AddMetroDoubleButton('metro-Overview', 'metro-pink', '', 'Overview', "location.href=\'/tags/Overview-Introduction\'");
+    $("#metro-banner").AddMetroSimpleButton('metro-Binary', 'metro-pink', '', 'Binary', "location.href=\'/tags/Binary-Files\'");
+    $("#metro-banner").AddMetroSimpleButton('metro-Source', 'metro-blue', '', 'Source Code', "location.href=\'https://github.com/hisilicon/estuary\'");
+    $("#metro-banner").AddMetroSimpleButton('metro-Caliper', 'metro-green', '', 'Caliper', "location.href=\'/tags/Caliper-for-Benchmarking\'");
+    $("#metro-banner").AddMetroSimpleButton('metro-Boards', 'metro-blue', '', 'Boards', "location.href=\'/tags/Shared-Boards-in-Open-Lab\'");
 	}
 }
 
