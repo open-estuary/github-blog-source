@@ -34,7 +34,8 @@ There are total 7 levels and some peripheral tools, they are introduced one by o
 	For Linux OS, not only the latest kernel will be enabled for Estuary, various distributions will be eanbled for it too, include but not limited to Ubuntu, Fedora, OpenEmbedded, Debian, Redhat and etc.
 	
 	Kernel source code can be gotten as follow:
-	get clone https://github.com/hisilicon/linaro-kernel -b estuary
+
+    git clone https://github.com/hisilicon/linaro-kernel -b estuary
 
 	More detail about kernel, please refer to <a href="https://github.com/hisilicon/estuary/blob/master/README">Estuary Readme</a>
 

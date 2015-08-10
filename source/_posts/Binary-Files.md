@@ -57,6 +57,9 @@ All binaries and their descriptions are listed as follows, how to use these bina
 	Redhat:		TBD
 	Debian:		TBD
 	OpenEmbedded: TBD
+All these validated distributions can be delpoyed to target partition directly with following example command.
+
+	dd if=ubuntu-vivid.img of=/dev/sda2
 
 All original distributions without validation for this project's boards can be downloaded from follows:
 
