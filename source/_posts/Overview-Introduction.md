@@ -5,7 +5,7 @@ tags: Overview Introduction
 Estuary is a complete open source project for ARM64 ecosystem, it tries to provide a total solution for universal-purpose computer based on aarch64 architecture, so that anyone can quickly get and bring up an ARM64-based software\hardware computer system. Maybe you are a user to ARM64 computer, a community developer based on ARM64 computer, a student or scholar working on ARM64 computer in university... anyway, nomatter whoever you are, wherever you are in, so long as you want to work\develop\debug\estimate\validate on an ARM64 computer\solution, you can quickly get this solution and bring up the whole system from here. 
 
 The main targets of Estuary are:
-1. A stable\available quick start solution based on ARM64 computer, so that anyone can quickly and easily get and bring up it, only focus on their own part.
+1. A stable\available quick start solution based on ARM64 computer, so that anyone can quickly and easily get and bring up it, then only focus on their own part.
 2. A common basic platform, which should be sustainable and continuously improved, can attract\absorb and integrate all 3rd achievement ceaselessly.
 3. Sufficient technological documentation, so that user\partner can easily get useful help from it.
 4. A popular BBS for ARM64 ecosystem, so that anyone can comunicate about ARM64 ecosystem each other here.
