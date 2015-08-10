@@ -60,7 +60,8 @@ There are total 7 levels and some peripheral tools, they are introduced one by o
 	D. Open Board Laboratory: To provide a way to remote access, debug hardware board. More detail refer to <a href="/tags/Shared-Boards-in-Open-Lab/">Shared Boards in Open Lab</a>.
 	E. Website: Just this website, news publish, technological communication, customer support, documentation release, mail list service, wiki and etc.
 	F. Armor Tools: Provide more useful tools used on debug, diagnoses, analyze of system. e.g.: perf, strace and etc. More detail refer to <a href="/tags/Armor-Tools/">Armor Tools</a>.
-	F. Bug system: Bug report, assign, track system. More detail please refer to <a href="https://github.com/hisilicon/hisilicon.github.io/issues/">Issue Report</a>
+	G. Bug system: Bug report, assign, track system. More detail please refer to <a href="https://github.com/hisilicon/hisilicon.github.io/issues/">Issue Report</a>
+    H. LAVA system: Automated test and job validation system. More detail please refer to <a href="http://htsat.vicp.cc:800/">LAVA</a>.
 
 In above picture, green block with yellow border means they will be enabled defaultly by quick start, green block means all these functions will be implemented in Estuary last version, grey block means options which will be implemented finally if there are enough resource and time.
 
