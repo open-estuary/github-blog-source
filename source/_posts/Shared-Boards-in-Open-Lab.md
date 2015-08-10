@@ -1,6 +1,6 @@
-title: remote share D02 in open lab
-date: 2015-04-24 11:50:00
-tags: D02
+title: Shared Boards in Open Lab
+date: 2015-08-10 10:14:40
+tags: Shared Boards in Open Lab
 ---
 #Remote using D02 in HTSAT open lab
 
