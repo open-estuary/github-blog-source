@@ -14,7 +14,7 @@
 	npm install hexo-renderer-stylus@0.1
 
 ##fetch source code
-	git clone https://github.com/joyxu/hisilicon-blog.git
+	git clone https://github.com/hisilicon/github-blog-source.git
 	cd hisilicon-blog
 
 ##add title and update 
