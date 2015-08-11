@@ -52,11 +52,11 @@ All binaries and their descriptions are listed as follows, how to use these bina
 4.<span id="dist">Linux Distribution</span>: Because the distribution's Images are too large, all of them are storaged into another place. The validated distributions for this project's boards can be downloaded from following website, the default **user name and passowrd** of distributions are: **root, root**.
 
 	Ubuntu:     wget -c http://7xjz0v.com1.z0.glb.clouddn.com/dist/ubuntu-vivid.img.tar.gz
-	OpenSUSE:	TBD 
-	Fedora:		wget -c http://7xjz0v.com1.z0.glb.clouddn.com/dist/fedora-22.img.tar.gz
-	Redhat:		TBD
-	Debian:		TBD
-	OpenEmbedded: TBD
+	OpenSUSE:   TBD 
+	Fedora:     wget -c http://7xjz0v.com1.z0.glb.clouddn.com/dist/fedora-22.img.tar.gz
+	Redhat:     TBD
+	Debian:     TBD
+	OpenEmbedded:   TBD
 All these validated distributions can be delpoyed to target partition directly with following example command.
 
 	dd if=ubuntu-vivid.img of=/dev/sda2
