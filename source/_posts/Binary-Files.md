@@ -61,6 +61,11 @@ All these validated distributions can be delpoyed to target partition directly w
 
 	dd if=ubuntu-vivid.img of=/dev/sda2
 
+Or you can also mount it to an empty directory as follows.
+
+    mkdir rootfs
+    mount ubuntu-vivid.img rootfs
+
 All original distributions without validation for this project's boards can be downloaded from follows:
 
 	Ubuntu:		wget -c https://cloud-images.ubuntu.com/vivid/current/vivid-server-cloudimg-arm64.tar.gz
