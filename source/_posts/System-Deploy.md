@@ -1,13 +1,16 @@
-title: System Hacking
+title: System Deployment
 date: 2015-08-10 10:16:19
-tags: System Hacking
+tags: System Deploy
 ---
-##Estuary System Hacking Manual
+##Estuary System Deployment Manual
+
+This documentation is to address how to get, build, deploy and bring up whole system from zero base, of course some contents in it are linked to dedicated page, you can just click the link to get more detail information about the special part.
 
 ##Overview
 * [Preparation Before Boot](#preparation)
     * [UEFI hacking](#UEFI)
     * [Kernel hacking](#kernel)
+    * [Estuary hacking](#estuary)
 * [Bring up System](#bringup)
     * [Boot via NORFLASH](#NORFLASH)
     * [Boot via PXE](#PXE)
@@ -52,7 +55,27 @@ Then there are two files that have been created:Image in the directory **arch/ar
 
 Anyway, before booting up system, all binaries should be avaiable firstly.
 You can do a quick trying with these binaries from <a href="/tags/Binary-Files/">Binary Files</a> directly.
-You can also build them yourself according to README file in <a href="https://github.com/hisilicon/estuary">Estuary Source Code</a>
+
+###<span id="estuary"> Estuary Hacking</span>
+
+For whole project's source code and binaries, you can also quickly get and build them yourself according to README file in <a href="https://github.com/hisilicon/estuary">Estuary Source Code</a>**
+
+Simple example commdands about getting and building as follows:
+
+    $mkdir -p ~/bin
+    $curl "https://android-git.linaro.org/gitweb?p=tools/repo.git;a=blob_plain;f=repo;hb=refs/heads/stable" > ~/bin/repo
+
+    $chmod a+x ~/bin/repo
+    $echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
+    $export PATH=~/bin:$PATH
+
+    $mkdir workdir
+    $cd workdir 
+    
+    $repo init -u "https://github.com/hisilicon/estuary.git" -b refs/tags/estuary-v1.2 --no-repo-verify --repo-url=git://android.git.linaro.org/tools/repo
+    $repo sync
+
+    $./estuary/build.sh -p D02 -d Ubuntu
 
 ##<span id="bringup">Bring up System</span>
 

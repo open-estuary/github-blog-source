@@ -3,7 +3,9 @@ date: 2015-08-10 10:13:06
 tags: Hardware Boards
 ---
 
-Currently, we totally support <a href="/tags/D01/">D01</a> and <a href="/tags/D02/">D02</a> hardware boards, and more other boards will be expected to enable in future, for the detail difference between them, please see following information.
+Currently, we totally support <a href="/tags/D01/">D01</a> and <a href="/tags/D02/">D02</a> hardware boards, and more other boards will be expected to enable in future. The basic difference between them are shown as follows, more detail information about them, please refer to:
+<a href="/tags/D01/">D01 system hacking</a>
+<a href="/tags/D02/">D02 system hacking</a>
 
 ##Overview
 
