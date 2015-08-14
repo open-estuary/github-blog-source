@@ -2,6 +2,8 @@
 
 ##for the first time
 	wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
+
+	#logout and login again then do following commands:
 	nvm install 0.10
 	npm install hexo@2.8.3 -g
 	npm install hexo-renderer-marked@0.1
