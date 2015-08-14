@@ -7,10 +7,11 @@ tags: System Deploy
 This documentation is to address how to get, build, deploy and bring up whole system from zero base, of course some contents in it are linked to dedicated page, you can just click the link to get more detail information about the special part.
 
 ##Overview
-* [Preparation Before Boot](#preparation)
-    * [UEFI hacking](#UEFI)
-    * [Kernel hacking](#kernel)
-    * [Estuary hacking](#estuary)
+* [Preparation Before Booting](#preparation)
+    * [UEFI Updating](#UEFI)
+    * [Build Estuary yourself](#build)
+    * [Single kernel](#kernel)
+    * [Use binaries direclty](#binary)
 * [Bring up System](#bringup)
     * [Boot via NORFLASH](#NORFLASH)
     * [Boot via PXE](#PXE)
@@ -21,6 +22,8 @@ This documentation is to address how to get, build, deploy and bring up whole sy
 All following desriptions will take the D02 boards as example, other boards have the similar steps to hack, for more detail difference, please refer to <a href="/tags/Hardware-Boards/">Hardware Boards</a>
 
 ##<span id="preparation">Preparation Before Boot</span>
+
+You need do some preparation to get all target binaries before you booting system, and you are supposely using Ubunt newer than 12.04 as your host OS. (But only Ubuntu 12.04 is validated)
 
 ###<span id="UEFI">UEFI hacking</span>
 
@@ -34,13 +37,48 @@ This step is not necessary unless you want ot update UEFI and trust firmware.
 
 	More detail information about hardware board, please refer to <a href="/tags/UEFI-and-Grub/">UEFI and Grub</a>
 
-###<span id="kernel"> Kernel Hacking</span>
+###<span id="build"> Build Estuary yourself </span>
 
-1.Clone the latest kernel source code with following command 
+You can get and build the whole project to get all binaries yourself as follows.
+
+**Firstly, to get the whole project as follows:**
+
+    $mkdir -p ~/bin
+    $curl "https://android-git.linaro.org/gitweb?p=tools/repo.git;a=blob_plain;f=repo;hb=refs/heads/stable" > ~/bin/repo
+	
+    $chmod a+x ~/bin/repo
+    $echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
+    $export PATH=~/bin:$PATH
+
+    $mkdir workdir
+    $cd workdir 
+
+    $repo init -u "https://github.com/hisilicon/estuary.git" -b refs/tags/estuary-v1.2 --no-repo-verify --repo-url=git://android.git.linaro.org/tools/repo
+    $repo sync
+If the repo sync fails during syncing, you can try it again.
+
+**Secondly, to build the target system as follows:**
+
+    $./estuary/build.sh -p D02 -d Ubuntu
+
+Then you will get all target binaries in 'build' directory.
+
+Following command will provide more useful help information about build script.
+
+	$./estuary/build.sh -h
+
+For more detail information about system obtaining and building, please refer to the **README** file in <a href="https://github.com/hisilicon/estuary">Estuary Source Code</a>
+
+###<span id="kernel"> Single kernel </span>
+
+You can do as follows, if you only want to rebuild kernel.
+
+1.Clone the latest kernel source code with following command.
 
     git clone https://github.com/hisilicon/linaro-kernel.git -b estuary
 
 2.Install tool chain from <a href="http://releases.linaro.org/14.09/components/toolchain/">Linaro Tool Chain</a>
+
 3.Build steps as follow:
 ```
    export ARCH=arm64
@@ -49,33 +87,13 @@ This step is not necessary unless you want ot update UEFI and trust firmware.
    make -j16
    make ./hisilicon/hip05-d02.dtb
 ```
-Or you can also directly do build.sh in kernel tree directory.
-Then there are two files that have been created:Image in the directory **arch/arm64/boot/**, and hip05-d02.dtb in the directory **arch/arm64/boot/dts/hisilicon**
-4.Obtain the distributions from <a href="/tags/Binary-Files/">Binary Files</a>.
+Then there are two files that have been created: Image in the directory **arch/arm64/boot/**, and hip05-d02.dtb in the directory **arch/arm64/boot/dts/hisilicon**
+
+###<span id="binary"> Use binaries directly </span>
 
 Anyway, before booting up system, all binaries should be avaiable firstly.
-You can do a quick trying with these binaries from <a href="/tags/Binary-Files/">Binary Files</a> directly.
 
-###<span id="estuary"> Estuary Hacking</span>
-
-For whole project's source code and binaries, you can also quickly get and build them yourself according to README file in <a href="https://github.com/hisilicon/estuary">Estuary Source Code</a>**
-
-Simple example commdands about getting and building as follows:
-
-    $mkdir -p ~/bin
-    $curl "https://android-git.linaro.org/gitweb?p=tools/repo.git;a=blob_plain;f=repo;hb=refs/heads/stable" > ~/bin/repo
-
-    $chmod a+x ~/bin/repo
-    $echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
-    $export PATH=~/bin:$PATH
-
-    $mkdir workdir
-    $cd workdir 
-    
-    $repo init -u "https://github.com/hisilicon/estuary.git" -b refs/tags/estuary-v1.2 --no-repo-verify --repo-url=git://android.git.linaro.org/tools/repo
-    $repo sync
-
-    $./estuary/build.sh -p D02 -d Ubuntu
+You can get them as above description, of course, you can also do a quick trying with all these existing binaries from <a href="/tags/Binary-Files/">Binary Files</a> directly.
 
 ##<span id="bringup">Bring up System</span>
 
