@@ -68,5 +68,5 @@ In above picture, green block with yellow border means they will be enabled defa
 
 To get Quick Start for Estuary project, please refer to <a href="/tags/Quick-Start/">Quick Start</a>.
 To get binary files for a quick validation, please refer to <a href="/tags/Binary-Files/">Binary Files</a>.
-To get more detail about multi methods to deploy\bring up system, please refer to <a href="/tags/System-Deploy/">System Deployment</a>.
+To get complete methods to go through whole project about how to get\build\bring up system, please refer to <a href="/tags/Go-Through/">Go Through</a>.
 To get all source code of Estuary, please refer to <a href="https://github.com/hisilicon/estuary/">Source Code</a>.

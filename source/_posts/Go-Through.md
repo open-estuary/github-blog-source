@@ -1,16 +1,16 @@
-title: System Deployment
+title: Go Through
 date: 2015-08-10 10:16:19
-tags: System Deploy
+tags: Go Through
 ---
-##Estuary System Deployment Manual
+##Go through Estuary Manual
 
-This documentation is to address how to get, build, deploy and bring up whole system from zero base, of course some contents in it are linked to dedicated page, you can just click the link to get more detail information about the special part.
+This documentation will lead you to go through the whole project about how to get, build, deploy and bring up target system based on ZERO, of course some contents in it are linked to dedicated page, you can just click the link to get more detail information about the special part.
 
 ##Overview
 * [Preparation Before Booting](#preparation)
-    * [UEFI Updating](#UEFI)
-    * [Build Estuary yourself](#build)
-    * [Single kernel](#kernel)
+    * [Hardware & UEFI](#UEFI)
+    * [Get\Build Estuary yourself](#build)
+    * [Only build kernel](#kernel)
     * [Use binaries direclty](#binary)
 * [Bring up System](#bringup)
     * [Boot via NORFLASH](#NORFLASH)
@@ -25,19 +25,19 @@ All following desriptions will take the D02 boards as example, other boards have
 
 You need do some preparation to get all target binaries before you booting system, and you are supposely using Ubunt newer than 12.04 as your host OS. (But only Ubuntu 12.04 is validated)
 
-###<span id="UEFI">UEFI hacking</span>
+###<span id="UEFI">Hardware & UEFI</span>
 
 This step is not necessary unless you want ot update UEFI and trust firmware.
 
 1. Check the hardware board
 
-	More detail information about hardware board, please refer to <a href="/tags/Hardware-Boards/">Hardware Boards</a>
+	Firstly, hardware board should be ready and checked carefully to make sure it is available, more detail information about different hardware board, please refer to <a href="/tags/Hardware-Boards/">Hardware Boards</a>
 
 2. Update UEFI and trust firmware
 
-	More detail information about hardware board, please refer to <a href="/tags/UEFI-and-Grub/">UEFI and Grub</a>
+	You can update UEFI and trust firmare yourself based on FTP service, More detail information about it, please refer to <a href="/tags/UEFI-and-Grub/">UEFI and Grub</a>
 
-###<span id="build"> Build Estuary yourself </span>
+###<span id="build"> Get\Build Estuary yourself </span>
 
 You can get and build the whole project to get all binaries yourself as follows.
 
@@ -69,7 +69,7 @@ Following command will provide more useful help information about build script.
 
 For more detail information about system obtaining and building, please refer to the **README** file in <a href="https://github.com/hisilicon/estuary">Estuary Source Code</a>
 
-###<span id="kernel"> Single kernel </span>
+###<span id="kernel"> Only build kernel </span>
 
 You can do as follows, if you only want to rebuild kernel.
 
@@ -96,6 +96,8 @@ Anyway, before booting up system, all binaries should be avaiable firstly.
 You can get them as above description, of course, you can also do a quick trying with all these existing binaries from <a href="/tags/Binary-Files/">Binary Files</a> directly.
 
 ##<span id="bringup">Bring up System</span>
+
+There are several methods to bring up system, you can select following anyone fitting you to boot up.
 
 ### <span id="NORFLASH">Boot via NORFLASH</span>
 
