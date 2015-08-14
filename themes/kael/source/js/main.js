@@ -402,7 +402,7 @@ function generateMetroBanner(){
 	if(0 == $("#metro-banner")[0].childElementCount){
     $("#metro-banner").AddMetroDoubleButton('metro-Quick', 'metro-green', '', 'Quick Start', "location.href=\'/tags/Quick-Start\'");
     $("#metro-banner").AddMetroSimpleButton('metro-Overview', 'metro-blue', '', 'Overview', "location.href=\'/tags/Overview-Introduction\'");
-    $("#metro-banner").AddMetroSimpleButton('metro-Go', 'metro-pink', '', 'Go Through', "location.href=\'/tags/Go-Through\'");
+    $("#metro-banner").AddMetroSimpleButton('metro-Gothrough', 'metro-pink', '', 'Go Through', "location.href=\'/tags/Go-Through\'");
     $("#metro-banner").AddMetroSimpleButton('metro-Binary', 'metro-pink', '', 'Binary', "location.href=\'/tags/Binary-Files\'");
     $("#metro-banner").AddMetroSimpleButton('metro-Source', 'metro-blue', '', 'Source Code', "location.href=\'https://github.com/hisilicon/estuary\'");
     $("#metro-banner").AddMetroSimpleButton('metro-Caliper', 'metro-green', '', 'Caliper', "location.href=\'/tags/Caliper-for-Benchmarking\'");
