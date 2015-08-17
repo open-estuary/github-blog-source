@@ -23,7 +23,7 @@ All following desriptions will take the D02 boards as example, other boards have
 
 ##<span id="preparation">Preparation Before Boot</span>
 
-You need do some preparation to get all target binaries before you booting system, and you are supposely using Ubunt newer than 12.04 as your host OS. (But only Ubuntu 12.04 is validated)
+You need do some preparation to get all target binaries before you booting system, and you are supposedly using Ubunt newer than 12.04 as your host OS. (But only Ubuntu 12.04 is validated)
 
 ###<span id="UEFI">Hardware & UEFI</span>
 
