@@ -140,57 +140,82 @@ PXE boot depends on DHCP and TFTP services.So before verifing PXE, you need to s
 Refer to https://help.ubuntu.com/community/isc-dhcp-server . For a simplified direction, try these steps:
 a.Install DHCP server package
 
-	sudo apt-get install isc-dhcp-server
+    sudo apt-get install -y isc-dhcp-server syslinux
 
 b.Edit /etc/dhcp/dhcpd.conf to suit your needs and particular configuration.Make sure filename is “grub2.efi”. Here is an example:
 
-     $ cat /etc/dhcp/dhcpd.conf
-     # Sample /etc/dhcpd.conf
-     # (add your comments here)
-     default-lease-time 600;
-     max-lease-time 7200;
-     option subnet-mask 255.255.255.0;
-     option broadcast-address 192.168.0.255;
-     option routers 192.168.0.1;
-     option domain-name-servers 192.168.0.1;
-     option domain-name "mydomain.example";
-     subnet 192.168.0.0 netmask 255.255.255.0 {
-         range 192.168.0.160 192.168.0.180;
-         option subnet-mask 255.255.255.0;
-         filename "archaa64.efi";
-     }
-     #
+    $ cat /etc/dhcp/dhcpd.conf
+    # Sample /etc/dhcpd.conf
+    # (add your comments here)
+    default-lease-time 600;
+    max-lease-time 7200;
+    subnet 192.168.1.0 netmask 255.255.255.0 {
+        range 192.168.1.210 192.168.1.250;
+        option subnet-mask 255.255.255.0;
+        option domain-name-servers 192.168.1.1;
+        option routers 192.168.1.1;
+        option subnet-mask 255.255.255.0;
+        option broadcast-address 192.168.1.255;
+        filename "grubaa64.efi";
+        #next-server 192.168.1.107
+    }
+    #
 
-c.Edit /etc/default/isc-dhcp-server to specify the interfaces dhcpd
-      should listen to. By default it listens to eth0.
-      Assign a static ip to the interface that you will use for dhcp.
+c.Edit /etc/default/isc-dhcp-server to specify the interfaces dhcpd should listen to. By default it listens to eth0.
+
+    INTERFACES="eth0"
+
 d.Use these commands to start or check dhcp service
 
-      sudo service isc-dhcp-server status
-      sudo service isc-dhcp-server start
+    sudo service isc-dhcp-server restart
+
+Check status
+
+    netstat -lu
+
+Output
+
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+    udp        0      0 *:bootpc                *:*                                
 
 2.Setup TFTP server on ubuntu
 a.Install TFTP server and TFTP client(optional, tftp-hpa is the client package)
 
-      sudo apt-get install tftpd-hpa tftp-hpa
+    sudo apt-get install -y topenbsd-inetd ftpd-hpa tftp-hpa lftp
 
-b.Configure the TFTP server, update /etc/default/tftpd-hpa like following:
+b.Edit /etc/inetd.conf, remove #<off># from the beginning of tftp line or add if it not there under #:BOOT: comment.
 
-      TFTP_USERNAME="tftp"
-      TFTP_ADDRESS="0.0.0.0:69"
-      TFTP_DIRECTORY="/var/lib/tftpboot"
-      TFTP_OPTIONS="-l -c -s"
+    tftp    dgram   udp wait    root    /usr/sbin/in.tftpd  /usr/sbin/in.tftpd -s /var/lib/tftpboot
 
-c.Set up TFTP server directory
+c.Enable boot service for inetd
 
-      sudo mkdir /var/lib/tftpboot
-      sudo chmod -R 777 /var/lib/tftpboot/
+    sudo update-inetd --enable BOOT
 
-d.Restart TFTP server
+d.Configure the TFTP server, update /etc/default/tftpd-hpa like following:
 
-      service tftpd-hpa status
-      service tftpd-hpa restart
-      service tftpd-hpa force-reload
+    TFTP_USERNAME="tftp"
+    TFTP_ADDRESS="0.0.0.0:69"
+    TFTP_DIRECTORY="/var/lib/tftpboot"
+    TFTP_OPTIONS="-l -c -s"
+
+e.Set up TFTP server directory
+
+    sudo mkdir /var/lib/tftpboot
+    sudo chmod -R 777 /var/lib/tftpboot/
+
+f.Restart inet & TFTP server
+
+    sudo service openbsd-inetd restart
+    sudo service tftpd-hpa restart
+
+Check status
+
+    netstat -lu
+
+Output
+
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State 
+    udp        0      0 *:tftp                  *:*                          
 
 3.Prepare some files on the TFTP root path
     The files include:grub binary file, grub configure file,Image and dtb file. In my case, they are grubaa64_linux.efi, grub.cfg-01-xx-xx-xx-xx-xx-xx,hip05-d02.dtb and Image.
