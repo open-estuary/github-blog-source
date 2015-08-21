@@ -58,7 +58,7 @@ You can get and build the whole project to get all binaries yourself as follows.
 If the repo sync fails during syncing, you can try it again.
 
 **Secondly, to build the target system as follows:**
-***Before building, you must change MAC address at 244 line in "rch/arm64/boot/dts/hisilicon/hip05_xge.dtsi" to adapt MAC address set in UEFI***
+***Before building, you must change MAC address at 244 line in "arch/arm64/boot/dts/hisilicon/hip05_xge.dtsi" to adapt MAC address set in UEFI***
 
     $./estuary/build.sh -p D02 -d Ubuntu
 
