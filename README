@@ -16,7 +16,7 @@
 	npm install hexo-renderer-stylus@0.1
 
 ##fetch source code
-	git clone https://github.com/hisilicon/github-blog-source.git
+	git clone https://github.com/open-estuary/github-blog-source.git
 	cd github-blog-source
 
 ##add title and update 
@@ -24,4 +24,4 @@
 	hexo n "new title"
 	hexo g
 	hexo s //check at your local web browser
-	hexo d //push to hisilicon.github.io
+	hexo d //push to open-estuary.github.io

@@ -13,16 +13,16 @@ For the source code of Grub, you can get it by follow:
 
 For the source code of UEFI, you can get it by follow:
 
-	git clone https://github.com/hisilicon/UEFI.git
+	git clone https://github.com/open-estuary/UEFI.git
 
 For binaries mentioned above, you can get them by follows, more introduction to these binaries, please refer to <a href="/tags/Binary-Files/">Binary Files</a>:
 
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/CH02_TEVBC_V03.bin
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/bl1.bin 
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/fip.bin
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/UEFI_Release.bin 
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/grub.cfg
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/grubaa64.efi
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/CH02_TEVBC_V03.bin
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/bl1.bin 
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/fip.bin
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/UEFI_Release.bin 
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/grub.cfg
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/grubaa64.efi
 
 
 ###UEFI hacking
@@ -124,7 +124,7 @@ You can edit the grub.cfg to support various boot mode, follow is an example.
     # Booting with NFS rootfs by PXE
     menuentry "Ubuntu NFS" --id ubuntu_nfs {
     	set root=(tftp,192.168.1.107)
-    	linux /Image rdinit=/init console=ttyS0,115200 earlycon=uart8250,mmio32,0x80300000 root=/dev/nfs rw nfsroot=192.168.1.107:/home/hisilicon/ftp/user/rootfs_ubuntu64 ip=:::::eth0:dhcp
+    	linux /Image rdinit=/init console=ttyS0,115200 earlycon=uart8250,mmio32,0x80300000 root=/dev/nfs rw nfsroot=192.168.1.107:/home/open-estuary/ftp/user/rootfs_ubuntu64 ip=:::::eth0:dhcp
     	devicetree /hip05-d02.dtb
     }
     

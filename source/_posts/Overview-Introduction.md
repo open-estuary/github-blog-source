@@ -24,7 +24,7 @@ There are total 7 levels and some peripheral tools, they are introduced one by o
 
 2. UEFI, Grub & bootloader:
 	Multi-kinds of boot loader will be enabled for Estuary, include but not limited to UEFI\Grub, uboot.
-	UEFI source code: https://github.com/hisilicon/UEFI.git
+	UEFI source code: https://github.com/open-estuary/UEFI.git
 	Grub source code: http://git.savannah.gnu.org/cgit/grub.git
 	
 	More detail about UEFI, please refer to <a href="/tags/UEFI-and-Grub/">UEFI and Grub</a>
@@ -35,9 +35,9 @@ There are total 7 levels and some peripheral tools, they are introduced one by o
 	
 	Kernel source code can be gotten as follow:
 
-    git clone https://github.com/hisilicon/linaro-kernel -b estuary
+    git clone https://github.com/open-estuary/linaro-kernel -b estuary
 
-	More detail about kernel, please refer to <a href="https://github.com/hisilicon/estuary/blob/master/README">Estuary Readme</a>
+	More detail about kernel, please refer to <a href="https://github.com/open-estuary/estuary/blob/master/README">Estuary Readme</a>
 
     For the distributions, they can be gotten from <a href="/tags/Binary-Files/">Binary Files</a>.
 
@@ -61,7 +61,7 @@ There are total 7 levels and some peripheral tools, they are introduced one by o
 	D. Open Board Laboratory: To provide a way to remote access, debug hardware board. More detail refer to <a href="/tags/Shared-Boards-in-Open-Lab/">Shared Boards in Open Lab</a>.
 	E. Website: Just this website, news publish, technological communication, customer support, documentation release, mail list service, wiki and etc.
 	F. Armor Tools: Provide more useful tools used on debug, diagnoses, analyze of system. e.g.: perf, strace and etc. More detail refer to <a href="/tags/Armor-Tools/">Armor Tools</a>.
-	G. Bug system: Bug report, assign, track system. More detail please refer to <a href="https://github.com/hisilicon/hisilicon.github.io/issues/">Issue Report</a>
+	G. Bug system: Bug report, assign, track system. More detail please refer to <a href="https://github.com/open-estuary/open-estuary.github.io/issues/">Issue Report</a>
     H. LAVA system: Automated test and job validation system. More detail please refer to <a href="http://htsat.vicp.cc:800/">LAVA</a>.
 
 In above picture, green block with yellow border means they will be enabled defaultly by quick start, green block means all these functions will be implemented in Estuary last version, grey block means options which will be implemented finally if there are enough resource and time.
@@ -69,4 +69,4 @@ In above picture, green block with yellow border means they will be enabled defa
 To get Quick Start for Estuary project, please refer to <a href="/tags/Quick-Start/">Quick Start</a>.
 To get binary files for a quick validation, please refer to <a href="/tags/Binary-Files/">Binary Files</a>.
 To get complete methods to go through whole project about how to get\build\bring up system, please refer to <a href="/tags/Go-Through/">Go Through</a>.
-To get all source code of Estuary, please refer to <a href="https://github.com/hisilicon/estuary/">Source Code</a>.
+To get all source code of Estuary, please refer to <a href="https://github.com/open-estuary/estuary/">Source Code</a>.

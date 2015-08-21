@@ -6,7 +6,7 @@ tags: Shared Boards in Open Lab
 
 This is a document about how to remote use the D02 board which located in HTSAT open lab. We have deployed two baords in open lab to share with you, if you are interested in D02 development,please don't hesitate to contact with [alan](mailto:huangdaode@hisilicon.com "huangdaode@hisilicon.com") to get your own account.
 
-*For local environment configuration and board hacking , please refer to [D02-hacking-manual](http://hisilicon.github.io/2015/02/10/D02-hacking-manual/ "d02-hacking").*
+*For local environment configuration and board hacking , please refer to [D02-hacking-manual](http://open-estuary.github.io/2015/02/10/D02-hacking-manual/ "d02-hacking").*
 
 ## Part 1 Use the ssh protocol to transfer image file
 For this part, we assume that you are using the Ubuntu system.

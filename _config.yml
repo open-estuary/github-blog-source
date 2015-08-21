@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hisilicon
-subtitle: Hisilicon Community Boards Support Site
+title: Open-Estuary
+subtitle: Open-Estuary Community Boards Support Site
 description: D01, D02, Hikey
-author: Joy Xu
-email: xuwei5@hisilicon.com
+author: Justin Zhao
+email: justin-zhao@qq.com
 language:
 
 # URL
@@ -86,7 +86,7 @@ exclude_generator:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: github
-  repository: https://github.com/hisilicon/hisilicon.github.io.git
+  repository: https://github.com/open-estuary/open-estuary.github.io.git
   branch: master
 
 # Plugins

@@ -1,8 +1,8 @@
 var hasPushstate = !!(window.history && history.pushState);
 // duoshuo load function
 //
-var duoshuoName = 'hisilicon'; // change to your DUOSHUO name
-var duoshuoQuery = {short_name: "hisilicon"}; // change to your duoshuo name
+var duoshuoName = 'open-estuary'; // change to your DUOSHUO name
+var duoshuoQuery = {short_name: "open-estuary"}; // change to your duoshuo name
 function toggleDuoshuoComments(container) {
     var el = document.createElement('div');
     el.setAttribute('data-thread-key', postTitle);
@@ -405,7 +405,7 @@ function generateMetroBanner(){
     $("#metro-banner").AddMetroSimpleButton('metro-Overview', 'metro-blue', '', 'Overview', "location.href=\'/tags/Overview-Introduction\'");
     $("#metro-banner").AddMetroSimpleButton('metro-Gothrough', 'metro-pink', '', 'Go Through', "location.href=\'/tags/Go-Through\'");
     $("#metro-banner").AddMetroSimpleButton('metro-Binary', 'metro-pink', '', 'Binary', "location.href=\'/tags/Binary-Files\'");
-    $("#metro-banner").AddMetroSimpleButton('metro-Source', 'metro-blue', '', 'Source Code', "location.href=\'https://github.com/hisilicon/estuary\'");
+    $("#metro-banner").AddMetroSimpleButton('metro-Source', 'metro-blue', '', 'Source Code', "location.href=\'https://github.com/open-estuary/estuary\'");
     $("#metro-banner").AddMetroSimpleButton('metro-Caliper', 'metro-green', '', 'Caliper', "location.href=\'/tags/Caliper-for-Benchmarking\'");
     $("#metro-banner").AddMetroSimpleButton('metro-Boards', 'metro-blue', '', 'Boards', "location.href=\'/tags/Hardware-Boards\'");
 	}
