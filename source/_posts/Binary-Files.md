@@ -23,7 +23,7 @@ All binaries and their descriptions are listed as follows, how to use these bina
     |  bl1.bin                   |    Trust Fireware binary           |
     |  fip.bin                   |                                    |
     +----------------------------+------------------------------------+                    
-    |  arch64aa.efi              |    grub binary                     |
+    |  grubaa64.efi              |    grub binary                     |
     +----------------------------+------------------------------------+       
     |  grub.cfg                  |    grub configure                  |        
     +----------------------------+------------------------------------+       
@@ -33,6 +33,10 @@ All binaries and their descriptions are listed as follows, how to use these bina
     +----------------------------+------------------------------------+              
     |  hulk-hip05.cpio.gz        |    initramfs stored in NORFLASH    |   
     +----------------------------+------------------------------------+
+    |  ubuntu-vivid.img.tar.gz   | ubuntu rootfs used on SATA or NFS  |   
+    |  fedora-22.img.tar.gz      | fedora rootfs used on SATA or NFS  |   
+    |  opensuse.img.tar.gz       | opensuse rootfs used on SATA or NFS|   
+    +----------------------------+------------------------------------+              
 
 ###<span id="function"> The function of each component</span>
 1.<span id="UEFI">UEFI</span>:responsible for loading and booting Image and dtb file,and you could download binary file from:
@@ -61,7 +65,7 @@ All these validated distributions can be delpoyed to target partition directly w
 
 	dd if=ubuntu-vivid.img of=/dev/sda2
 
-Or you can also mount it to an empty directory as follows.
+Or you can also mount it to an empty directory and then copy them to any target directory what you want as follows.
 
     mkdir rootfs
     mount ubuntu-vivid.img rootfs

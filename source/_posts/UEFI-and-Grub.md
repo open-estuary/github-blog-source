@@ -99,15 +99,7 @@ Now you have already updated your failed BIOS, and the board will enter the UEFI
 ###Config Grub file
 Grub is used to load the kernel into RAM and start it, normally they are place into bootable partition as following structure. 
 
-    -------EFI
-    |       |
-    |       GRUB2-----archaa64.efi  #grub binary file
-    |            |
-    |            ------grub.cfg     #grub config file
-    |
-    |-------------Image             #kernel Image file
-    |
-    |-------------hip05-d02.dtb     #kernel data tree binary file
+<img src="http://7xjz0v.com1.z0.glb.clouddn.com/bootarch.jpg" style="width:556px;height:164px;margin-left:30px"/>
 
 You can edit the grub.cfg to support various boot mode, follow is an example.
 
