@@ -43,15 +43,12 @@ You can get and build the whole project to get all binaries yourself as follows.
 
 **Firstly, to get the whole project as follows:**
 
-    $mkdir -p ~/bin
+    $mkdir -p ~/bin; sudo apt-get update; sudo apt-get upgrade -y; sudo apt-get install -y curl git
     $curl "https://android-git.linaro.org/gitweb?p=tools/repo.git;a=blob_plain;f=repo;hb=refs/heads/stable" > ~/bin/repo
 	
-    $chmod a+x ~/bin/repo
-    $echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
-    $export PATH=~/bin:$PATH
+    $chmod a+x ~/bin/repo; echo 'export PATH=~/bin:$PATH' >> ~/.bashrc; export PATH=~/bin:$PATH
 
-    $mkdir workdir
-    $cd workdir 
+    $mkdir workdir; cd workdir 
 
     $repo init -u "https://github.com/hisilicon/estuary.git" -b refs/tags/estuary-v1.2 --no-repo-verify --repo-url=git://android.git.linaro.org/tools/repo
     $repo sync

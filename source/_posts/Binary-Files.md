@@ -70,6 +70,12 @@ Or you can also mount it to an empty directory and then copy them to any target 
     mkdir rootfs
     mount ubuntu-vivid.img rootfs
 
+All direct rootfs tarball files can be gotten from following links too, for these files, you can untar and use them directly.
+
+    Ubuntu:     wget -c http://7xjz0v.com1.z0.glb.clouddn.com/dist/ubuntu-vivid.img.gz
+    OpenSUSE:   wget -c http://7xjz0v.com1.z0.glb.clouddn.com/dist/openSUSE.img.gz
+    Fedora:     wget -c http://7xjz0v.com1.z0.glb.clouddn.com/dist/fedora-22.img.gz
+
 All original distributions without validation for this project's boards can be downloaded from follows:
 
 	Ubuntu:		wget -c https://cloud-images.ubuntu.com/vivid/current/vivid-server-cloudimg-arm64.tar.gz
