@@ -49,6 +49,7 @@ You can get and build the whole project to get all binaries yourself as follows.
     $chmod a+x ~/bin/repo; echo 'export PATH=~/bin:$PATH' >> ~/.bashrc; export PATH=~/bin:$PATH
 
     $mkdir workdir; cd workdir 
+You just need do one time above steps for first getting this project, but all following steps are necessary for each time getting or updating.
 
     $repo init -u "https://github.com/hisilicon/estuary.git" -b refs/tags/estuary-v1.2 --no-repo-verify --repo-url=git://android.git.linaro.org/tools/repo
     $repo sync
