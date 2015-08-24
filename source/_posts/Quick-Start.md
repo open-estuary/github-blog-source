@@ -4,8 +4,7 @@ tags: Quick Start
 ---
 Firstly,Download Estuary source code from GitHub.
 About how to get Estuary source code, please refer to : 
-https://github.com/hisilicon/estuary/blob/master/README
-
+<a href="/tags/Go-Through/">Go Through</a> : Get\Build Estuary yourself
 Create USB installation disk deploying Linux system into Hard Disk of D02 board
 1. Plug USB Disk to ubuntu machine
 Execute these command:
