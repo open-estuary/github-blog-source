@@ -43,7 +43,7 @@ You can get and build the whole project to get all binaries yourself as follows.
 
 **Firstly, to get the whole project as follows:**
 
-    $mkdir -p ~/bin; sudo apt-get update; sudo apt-get -y install curl
+    $mkdir -p ~/bin; sudo apt-get update; sudo apt-get upgrade -y; sudo apt-get install -y curl git
     $curl "https://android-git.linaro.org/gitweb?p=tools/repo.git;a=blob_plain;f=repo;hb=refs/heads/stable" > ~/bin/repo
 	
     $chmod a+x ~/bin/repo; echo 'export PATH=~/bin:$PATH' >> ~/.bashrc; export PATH=~/bin:$PATH
