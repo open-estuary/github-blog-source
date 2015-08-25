@@ -51,7 +51,7 @@ You can get and build the whole project to get all binaries yourself as follows.
     $mkdir workdir; cd workdir 
 You just need do one time above steps for first getting this project, but all following steps are necessary for each time getting or updating.
 
-    $repo init -u "https://github.com/hisilicon/estuary.git" -b refs/tags/estuary-v1.2 --no-repo-verify --repo-url=git://android.git.linaro.org/tools/repo
+    $repo init -u "https://github.com/open-estuary/estuary.git" --no-repo-verify --repo-url=git://android.git.linaro.org/tools/repo
     $repo sync
 If the repo sync fails during syncing, you can try it again.
 
@@ -74,7 +74,7 @@ You can do as follows, if you only want to rebuild kernel.
 
 1.Clone the latest kernel source code with following command.
 
-    git clone https://github.com/hisilicon/linaro-kernel.git -b estuary
+    git clone https://github.com/open-estuary/kernel.git
 
 2.Install tool chain from <a href="http://releases.linaro.org/14.09/components/toolchain/">Linaro Tool Chain</a>
 

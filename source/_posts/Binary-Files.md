@@ -5,11 +5,11 @@ tags: Binary Files
 
 You can have a quick trying with all binaries, which can be downloaded from following link:
 
-	https://github.com/hisilicon/estuary/releases
+	https://github.com/open-estuary/estuary/releases
 
 Here, you can click the 'Latest release' on left of page firstly, then download any files in the version as you like.
 
-	e.g.: wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/Image
+	e.g.: wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/Image
 
 All binaries and their descriptions are listed as follows, how to use these binaries, please refer to <a href="/tags/System-Hacking/">System Hacking</a>:
 
@@ -41,17 +41,17 @@ All binaries and their descriptions are listed as follows, how to use these bina
 ###<span id="function"> The function of each component</span>
 1.<span id="UEFI">UEFI</span>:responsible for loading and booting Image and dtb file,and you could download binary file from:
 
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/UEFI_Release.bin 
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/UEFI_Release.bin 
 
 2.<span id="GRUB">GRUB</span>:grub configure file and grub image file for D02,and you could download binary file from:
 
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/grub.cfg
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/grubaa64.efi
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/grub.cfg
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/grubaa64.efi
 
 3.<span id="kernel">Kernel</span>:the operation system that D02 runs on,and you could binary files from following website:
 
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/Image
-	wget -c https://github.com/hisilicon/estuary/releases/download/bin-v1.2/hip05-d02.dtb
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/Image
+	wget -c https://github.com/open-estuary/estuary/releases/download/bin-v1.2/hip05-d02.dtb
 
 4.<span id="dist">Linux Distribution</span>: Because the distribution's Images are too large, all of them are storaged into another place. The validated distributions for this project's boards can be downloaded from following website, the default **user name and passowrd** of distributions are: **root, root**.
 
